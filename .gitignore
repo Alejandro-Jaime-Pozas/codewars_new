@@ -1,1 +1,5 @@
-csvs
+# gitignore all files in root dir
+/*
+
+# exclude from gitignore the main dir
+!main
