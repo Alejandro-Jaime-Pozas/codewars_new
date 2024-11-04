@@ -14,44 +14,51 @@ from typing import Optional, List
 # Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit = 4-1 = 3.
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
+        # what i would do personally, is check all trough to peaks (meaning lowest to highest) and get their values as possible profit values, then compare them with each other depending on their index values to see which pairs are both highest profit and compatible in range
         # if holding stock (bought) you cannot buy another, must sell prior
-        # you can either not buy a stock, buy and sell once, or buy and sell twice
+        # you can either never buy a stock, buy and sell once, or buy and sell twice
         # if you buy and sell twice, cannot hold 2 at once, must sell prior
-        # cannot sell then buy on same day
+        # cannot sell then buy on same day (should be no reason to)
         # could be O(2n) problem, you just run through list twice to check best?
-        profit = 0
-        return 
+        # keep track if holding stock, cannot buy while holding
+        # multiple possible options, so need to compare all options
+        # for each num, check if buy that num, what is max profit achievable in 1 or 2 buy/sell actions from that num forward
+        # no overlap so grab the two highest profits
+        highest1 = 0
+        highest2 = 0
+        for i in range(len(prices)-1):
+            if prices[i+1] > highest1
     
 print(Solution().maxProfit([3,3,5,0,0,3,1,4]))
         
 
-# best time to buy and sell stock II
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        # common sense: should only buy when very low compared to future values
-        # should only sell when high compared to future values..
-        # always need to check if holding 1 share or not, start w/o share
-        # pattern: check next value, only buy if NOT holding and next is lower
-        # only sell if holding and next is higher
-        # not enough, need to check consecutive values
-        # could run through list once, check peaks and troughs, add index of those to 2 lists, then in final check if index to buy or sell based on peaks and troughs
-        # you can buy and sell on same day. either buy and sell or sell and buy
-        profit = 0
-        holding = False
-        last_value = 0
-        prices += [0]
-        for i in range(len(prices)-1):
-            # always sell if you're holding no matter price
-            if holding:  # means prev price was lower so sell
-                holding = False
-                profit += prices[i] - last_value 
-            # if not holding, only buy if next price is higher
-            if prices[i+1] > prices[i]:
-                last_value = prices[i]
-                holding = True 
-        return profit
+# # best time to buy and sell stock II
+# class Solution:
+#     def maxProfit(self, prices: List[int]) -> int:
+#         # common sense: should only buy when very low compared to future values
+#         # should only sell when high compared to future values..
+#         # always need to check if holding 1 share or not, start w/o share
+#         # pattern: check next value, only buy if NOT holding and next is lower
+#         # only sell if holding and next is higher
+#         # not enough, need to check consecutive values
+#         # could run through list once, check peaks and troughs, add index of those to 2 lists, then in final check if index to buy or sell based on peaks and troughs
+#         # you can buy and sell on same day. either buy and sell or sell and buy
+#         profit = 0
+#         holding = False
+#         last_value = 0
+#         prices += [0]
+#         for i in range(len(prices)-1):
+#             # always sell if you're holding no matter price
+#             if holding:  # means prev price was lower so sell
+#                 holding = False
+#                 profit += prices[i] - last_value 
+#             # if not holding, only buy if next price is higher
+#             if prices[i+1] > prices[i]:
+#                 last_value = prices[i]
+#                 holding = True 
+#         return profit
 
-print(Solution().maxProfit([7,5,1,3,6,10,1,200,1]))
+# print(Solution().maxProfit([7,5,1,3,6,10,1,200,1]))
 
 
 # best time to buy and sell stock
