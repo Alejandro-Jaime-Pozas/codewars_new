@@ -2,6 +2,7 @@
 from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
+
 # 124. Binary Tree Maximum Path Sum
 # Definition for a binary tree node.
 class TreeNode:
@@ -11,9 +12,11 @@ class TreeNode:
         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        # 
-        return 
-    
+        # just a contiguous path that doesn't split up, continuous 
+        # could also return just one node if that's the max path
+        # recursive
+        # how do you prevent splitting subtrees in answer?
+        # if not main root, and if parent has 2 child nodes, cannot venture past higher than parent node w/both children if path is longer than child>parent>child, this would create invalid split path.
 
 
 root = TreeNode(-10)
