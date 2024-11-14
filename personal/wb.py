@@ -17,6 +17,22 @@ class Solution:
         # recursive
         # how do you prevent splitting subtrees in answer?
         # if not main root, and if parent has 2 child nodes, cannot venture past higher than parent node w/both children if path is longer than child>parent>child, this would create invalid split path.
+        res = [root.val]
+
+        # return the max path sum w/o splitting
+        def dfs(root):
+            if not root:
+                return 0 
+
+            left_max = dfs(root.left)
+            right_max = dfs(root.right)
+            left_max = max(left_max, 0)
+            right_max = max(right_max, 0) 
+
+            # compute max path sum WITH split
+            res[0] = max(res[0], root.val, + left_max + right_max)
+
+            return root.val + max(left_max, right_max)
 
 
 root = TreeNode(-10)
