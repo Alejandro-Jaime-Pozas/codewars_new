@@ -1,4 +1,6 @@
-print(type(str))
+print(-float('inf')/2)
+
+# print(type(str))
 
 # if 10 > (20 or 9):
 #     print(10)

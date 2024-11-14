@@ -17,7 +17,7 @@ class Solution:
         # recursive
         # how do you prevent splitting subtrees in answer?
         # if not main root, and if parent has 2 child nodes, cannot venture past higher than parent node w/both children if path is longer than child>parent>child, this would create invalid split path.
-        res = [root.val]
+        res = [root.val]  # this needs to be mutable obj to access its values within nested functions, otherwise can't reassign outer variable in nested fn
 
         # return the max path sum w/o splitting
         def dfs(root):
@@ -30,9 +30,13 @@ class Solution:
             right_max = max(right_max, 0) 
 
             # compute max path sum WITH split
-            res[0] = max(res[0], root.val, + left_max + right_max)
+            # update res[0], compare res[0] vs current subtree sum value
+            res[0] = max(res[0], root.val + left_max + right_max)
 
             return root.val + max(left_max, right_max)
+
+        dfs(root)
+        return res[0]
 
 
 root = TreeNode(-10)
