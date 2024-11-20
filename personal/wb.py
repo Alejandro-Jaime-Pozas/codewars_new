@@ -31,6 +31,7 @@ class Solution:
 
             # compute max path sum WITH split
             # update res[0], compare res[0] vs current subtree sum value
+            # check how this is NOT grabbing all split sum paths, just linear paths
             res[0] = max(res[0], root.val + left_max + right_max)
 
             return root.val + max(left_max, right_max)
