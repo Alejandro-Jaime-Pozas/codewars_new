@@ -7,13 +7,16 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         # convert all to lowercase
         # remove all non-alphanumeric chars
-        stripped = tuple(filter(lambda c: c.isalnum(), s.lower()))
-        l, r = 0, len(stripped)-1
-        while l <= r: 
-            if stripped[l] != stripped[r]:
-                return False 
-            l, r = l+1, r-1
-        return True 
+        # stripped = tuple(filter(lambda c: c.isalnum(), s.lower()))
+        # l, r = 0, len(stripped)-1
+        # while l <= r: 
+        #     if stripped[l] != stripped[r]:
+        #         return False 
+        #     l, r = l+1, r-1
+        # return True 
+    
+        s = ''.join(c for c in s.lower() if c.isalnum())
+        return s == s[::-1]
 
 
 print(Solution().isPalindrome('Race  car'))
