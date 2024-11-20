@@ -2,50 +2,67 @@
 from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
-
-# 124. Binary Tree Maximum Path Sum
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+# 125. Valid Palindrome
 class Solution:
-    def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        # just a contiguous path that doesn't split up, continuous 
-        # could also return just one node if that's the max path
-        # recursive
-        # how do you prevent splitting subtrees in answer?
-        # if not main root, and if parent has 2 child nodes, cannot venture past higher than parent node w/both children if path is longer than child>parent>child, this would create invalid split path.
-        res = [root.val]  # this needs to be mutable obj to access its values within nested functions, otherwise can't reassign outer variable in nested fn
-
-        # return the max path sum w/o splitting
-        def dfs(root):
-            if not root:
-                return 0 
-
-            left_max = dfs(root.left)
-            right_max = dfs(root.right)
-            left_max = max(left_max, 0)
-            right_max = max(right_max, 0) 
-
-            # compute max path sum WITH split
-            # update res[0], compare res[0] vs current subtree sum value
-            # check how this is NOT grabbing all split sum paths, just linear paths
-            res[0] = max(res[0], root.val + left_max + right_max)
-
-            return root.val + max(left_max, right_max)
-
-        dfs(root)
-        return res[0]
+    def isPalindrome(self, s: str) -> bool:
+        # convert all to lowercase
+        # remove all non-alphanumeric chars
+        stripped = tuple(filter(lambda c: c.isalnum(), s.lower()))
+        l, r = 0, len(stripped)-1
+        while l <= r: 
+            if stripped[l] != stripped[r]:
+                return False 
+            l, r = l+1, r-1
+        return True 
 
 
-root = TreeNode(-10)
-root.left = TreeNode(9)
-root.right = TreeNode(20)
-root.right.left = TreeNode(15)
-root.right.right = TreeNode(7)
-print(Solution().maxPathSum(root))        
+print(Solution().isPalindrome('Race  car'))
+
+
+
+# # 124. Binary Tree Maximum Path Sum
+# # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# class Solution:
+#     def maxPathSum(self, root: Optional[TreeNode]) -> int:
+#         # just a contiguous path that doesn't split up, continuous 
+#         # could also return just one node if that's the max path
+#         # recursive
+#         # how do you prevent splitting subtrees in answer?
+#         # if not main root, and if parent has 2 child nodes, cannot venture past higher than parent node w/both children if path is longer than child>parent>child, this would create invalid split path.
+#         res = [root.val]  # this needs to be mutable obj to access its values within nested functions, otherwise can't reassign outer variable in nested fn
+
+#         # return the max path sum w/o splitting
+#         def dfs(root):
+#             if not root:
+#                 return 0 
+
+#             left_max = dfs(root.left)
+#             right_max = dfs(root.right)
+#             left_max = max(left_max, 0)
+#             right_max = max(right_max, 0) 
+
+#             # compute max path sum WITH split
+#             # update res[0], compare res[0] vs current subtree sum value
+#             # check how this is NOT grabbing all split sum paths, just linear paths
+#             res[0] = max(res[0], root.val + left_max + right_max)
+
+#             return root.val + max(left_max, right_max)
+
+#         dfs(root)
+#         return res[0]
+
+
+# root = TreeNode(-10)
+# root.left = TreeNode(9)
+# root.right = TreeNode(20)
+# root.right.left = TreeNode(15)
+# root.right.right = TreeNode(7)
+# print(Solution().maxPathSum(root))        
 
 
 

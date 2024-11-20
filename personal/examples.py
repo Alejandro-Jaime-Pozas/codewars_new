@@ -1,4 +1,7 @@
-print(-float('inf')/2)
+# a = 'abcdefg'~
+# print(a[::-1])
+
+# print(-float('inf')/2)
 
 # print(type(str))
 
