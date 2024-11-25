@@ -3,23 +3,23 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 136. Single Number
-class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-        # O(n) time, O(1) space
-        # O(1) space means you cannot store more than 1 var at a time?
-        # you do need to iterate through entire list, no way around it
-        # if you make all duplicates one positive one negative, would get zero, except for the unique value...
-        
-        seen = set()
-        for n in nums:
-            if n in seen:
-                seen.remove(n)
-            else:
-                seen.add(n)
-        return seen.pop()
+# # 136. Single Number
+# class Solution:
+#     def singleNumber(self, nums: List[int]) -> int:
+#         # O(n) time, O(1) space
+#         # O(1) space means you cannot store more than 1 var at a time?
+#         # you do need to iterate through entire list, no way around it
+#         # if you make all duplicates one positive one negative, would get zero, except for the unique value...
 
-print(Solution().singleNumber([4,1,2,1,2]))
+#         seen = set()
+#         for n in nums:
+#             if n in seen:
+#                 seen.remove(n)
+#             else:
+#                 seen.add(n)
+#         return seen.pop()
+
+# print(Solution().singleNumber([4,1,2,1,2]))
 
 
 # # 127. Word Ladder
