@@ -1,3 +1,5 @@
+print(3 ^ 5)
+
 # a = 'abcdefg'~
 # print(a[::-1])
 

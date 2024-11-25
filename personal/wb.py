@@ -2,24 +2,58 @@
 from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
-# 125. Valid Palindrome
+
+# 136. Single Number
 class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        # convert all to lowercase
-        # remove all non-alphanumeric chars
-        # stripped = tuple(filter(lambda c: c.isalnum(), s.lower()))
-        # l, r = 0, len(stripped)-1
-        # while l <= r: 
-        #     if stripped[l] != stripped[r]:
-        #         return False 
-        #     l, r = l+1, r-1
-        # return True 
+    def singleNumber(self, nums: List[int]) -> int:
+        # O(n) time, O(1) space
+        # O(1) space means you cannot store more than 1 var at a time?
+        # you do need to iterate through entire list, no way around it
+        # if you make all duplicates one positive one negative, would get zero, except for the unique value...
+        
+        seen = set()
+        for n in nums:
+            if n in seen:
+                seen.remove(n)
+            else:
+                seen.add(n)
+        return seen.pop()
+
+print(Solution().singleNumber([4,1,2,1,2]))
+
+
+# # 127. Word Ladder
+# class Solution:
+#     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+#         pass 
+#         # need to change just one letter from each consecutive word and get to the final word
+#         # all word lengths equal
+#         # think you could just find words that replace a single char in curr word with char in final word?
+#         # meme >>> team. meme > mome > tome > teme > teae > team
+#         #   you could start right at teme since that's one char dif, but there are essentially multiple ways to solve...so how to find the fastest way to solve? would need to go through all possibilities? yes, unless you find a possibility that's equal to num of diff words bw start and end word. so meme to team requires at least 3 transforms. meme,teme,teae,team. so if not len(diff in chars bw start, end words) == num transformations, keep seaching for most efficient solution
+#         # could there be a case where you transform to a letter that is not in final word same index? song >>> beam. song > sang > bang > beng > beag > beam
+#         # yes, you could use other letters to reach final...very hard problem
+
+
+
+# # 125. Valid Palindrome
+# class Solution:
+#     def isPalindrome(self, s: str) -> bool:
+#         # convert all to lowercase
+#         # remove all non-alphanumeric chars
+#         # stripped = tuple(filter(lambda c: c.isalnum(), s.lower()))
+#         # l, r = 0, len(stripped)-1
+#         # while l <= r: 
+#         #     if stripped[l] != stripped[r]:
+#         #         return False 
+#         #     l, r = l+1, r-1
+#         # return True 
     
-        s = ''.join(c for c in s.lower() if c.isalnum())
-        return s == s[::-1]
+#         s = ''.join(c for c in s.lower() if c.isalnum())
+#         return s == s[::-1]
 
 
-print(Solution().isPalindrome('Race  car'))
+# print(Solution().isPalindrome('Race  car'))
 
 
 
