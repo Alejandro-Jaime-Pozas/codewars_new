@@ -3,7 +3,15 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
+# 137. Single Number II
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        # XOR cancels repeating nums out. but how to get rid of 3rd? could match to other prev matches?
+        res = 0
+        return 
 
+
+print(Solution().singleNumber([0,1,0,1,0,1,99]))
 
 
 
