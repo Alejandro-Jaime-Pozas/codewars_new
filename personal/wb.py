@@ -3,15 +3,32 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 137. Single Number II
+# 141. Linked List Cycle
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-        # XOR cancels repeating nums out. but how to get rid of 3rd? could match to other prev matches?
-        res = 0
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
         return 
 
 
-print(Solution().singleNumber([0,1,0,1,0,1,99]))
+
+# # 137. Single Number II
+# class Solution:
+#     def singleNumber(self, nums: List[int]) -> int:
+#         # XOR cancels repeating nums out. but how to get rid of 3rd? could match to other prev matches?
+#         # constant space so can't store linear items
+#         # somehow would cancel all duplicates first, then get sum of list, subtract sum of duplicates from sum of list to get unique num
+#         # would prob require 2 constant vars
+#         res = 0
+#         sum_all = sum(nums)
+#         return 
+
+
+# print(Solution().singleNumber([0,1,0,1,0,1,99]))
 
 
 
