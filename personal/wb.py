@@ -11,8 +11,22 @@ class ListNode:
         self.next = None
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
-        return 
+    def hasCycle(self, head: Optional[ListNode]) -> bool:  # pos
+        # the tail node will either be the last with none next, or not..
+        # need pos? yes, but how to access?
+        # did not require pos, just distraction
+        # two pointers, one fast, one slow will eventually meet always if cycle
+        slow = head
+        fast = head
+
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            # if not fast or fast = slow, return true
+            if fast == slow:
+                return True
+
+        return False
 
 
 
