@@ -14,16 +14,27 @@ class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         # o(n) time, o(n) space first
         # somehow store the index of the node being checked 
+        # could store all nodes, check if new next node already seen..
         curr = head 
-        index = 0
-        while curr and curr.next:
-            print(curr.val)
+        i = 0
+        seen = dict()
+        while curr:
+            # if next node is in seen, that is the index to return
+            if curr in seen:
+                return curr
+            else:
+                seen[curr] = i 
+                i += 1
+                curr = curr.next 
 
+        # no cycle found, return null
         return None 
 
 
 l1 = ListNode(10)
-print(Solution().detectCycle(None))
+l1.next = ListNode(20)
+l1.next.next = l1
+print(Solution().detectCycle(l1))
 
 
 # # 141. Linked List Cycle
