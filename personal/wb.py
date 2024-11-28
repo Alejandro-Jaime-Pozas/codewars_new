@@ -12,9 +12,18 @@ class ListNode:
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 
-        return
+        # o(n) time, o(n) space first
+        # somehow store the index of the node being checked 
+        curr = head 
+        index = 0
+        while curr and curr.next:
+            print(curr.val)
 
+        return None 
+
+
+l1 = ListNode(10)
+print(Solution().detectCycle(None))
 
 
 # # 141. Linked List Cycle
