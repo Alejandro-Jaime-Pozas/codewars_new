@@ -3,54 +3,57 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 142. Linked List Cycle II
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
 
-class Solution:
-    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # do not create doubly linked list
-        # two pointer sol that somehow catches the being value...
-        # how to check if a node has two pointers to it? reverse it, and check if still has next value (means start?)
-        fast, slow = head, head 
-        while fast and fast.next:
-            # means there is a cycle, continue w/code 
-            slow = slow.next 
-            fast = fast.next.next
-            if fast == slow:
-                break 
-        else:
-            # no cycle found
-            return None 
+
+
+# # 142. Linked List Cycle II
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# class Solution:
+#     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         # do not create doubly linked list
+#         # two pointer sol that somehow catches the being value...
+#         # how to check if a node has two pointers to it? reverse it, and check if still has next value (means start?)
+#         fast, slow = head, head 
+#         while fast and fast.next:
+#             # means there is a cycle, continue w/code 
+#             slow = slow.next 
+#             fast = fast.next.next
+#             if fast == slow:
+#                 break 
+#         else:
+#             # no cycle found
+#             return None 
         
-        # now reset the slow pointer to head, keep fast, move both by 1 until meeting
-        slow = head 
-        while fast != slow:
-            fast = fast.next 
-            slow = slow.next 
-        return fast 
+#         # now reset the slow pointer to head, keep fast, move both by 1 until meeting
+#         slow = head 
+#         while fast != slow:
+#             fast = fast.next 
+#             slow = slow.next 
+#         return fast 
         
-        # # o(n) time, o(n) space first
-        # # somehow store the index of the node being checked 
-        # # could store all nodes, check if new next node already seen..
-        # curr = head 
-        # seen = set()
-        # while curr:
-        #     if curr in seen:
-        #         return curr
-        #     else:
-        #         seen.add(curr)
-        #         curr.next
-        # return None 
+#         # # o(n) time, o(n) space first
+#         # # somehow store the index of the node being checked 
+#         # # could store all nodes, check if new next node already seen..
+#         # curr = head 
+#         # seen = set()
+#         # while curr:
+#         #     if curr in seen:
+#         #         return curr
+#         #     else:
+#         #         seen.add(curr)
+#         #         curr.next
+#         # return None 
 
 
-l1 = ListNode(10)
-l1.next = ListNode(20)
-l1.next.next = l1
-print(Solution().detectCycle(l1))
+# l1 = ListNode(10)
+# l1.next = ListNode(20)
+# l1.next.next = l1
+# print(Solution().detectCycle(l1))
 
 
 # # 141. Linked List Cycle
