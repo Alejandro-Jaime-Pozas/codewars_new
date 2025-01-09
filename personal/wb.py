@@ -21,19 +21,29 @@ from typing import Optional, List
 # print(Solution().preorderTraversal(root))
 
 
-def build_palindrome(s):
-    pass
-    # just need to check if front or back limited numbers of chars will be added to str
-    # left, right vars
-    # keep adding to left from right and vice versa chars and check each time if palindrome success, once success switch from left to right
-    left, right = s, s 
-    attempts = 1
-    while left != left[::-1] and len(s)//attempts > 0:
-        left = left[-1]
-        attempts += 1
+# def build_palindrome(s):
+#     pass
+#     # just need to check if front or back limited numbers of chars will be added to str
+#     # left, right vars
+#     # keep adding to left from right and vice versa chars and check each time if palindrome success, once success switch from left to right
+#     left, right = s, s 
+#     attempts = 1
+#     ladd, radd = -1, 0
+#     while left != left[::-1] and len(s)//attempts > 1:
+#         left = left[ladd] + left
+#         print(left)
+#         attempts += 1
+#         ladd -= 1
+#     attempts = 1
+#     while right != right[::-1] and len(s)//attempts > 1:
+#         right = right + right[radd]
+#         print(right)
+#         attempts += 1
+#         radd += 1
+#     return left if len(left) <= len(right) else right 
+    
 
-print(build_palindrome('abac'))
-print(5//3)
+# print(build_palindrome('right'))
 
 
 # # 142. Linked List Cycle II
