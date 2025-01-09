@@ -4,21 +4,36 @@ from typing import Optional, List
 
 
 
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
-class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        return 
+# # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# class Solution:
+#     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+#         return 
     
 
-root = TreeNode(1)
+# root = TreeNode(1)
 
 
-print(Solution().preorderTraversal(root))
+# print(Solution().preorderTraversal(root))
+
+
+def build_palindrome(s):
+    pass
+    # just need to check if front or back limited numbers of chars will be added to str
+    # left, right vars
+    # keep adding to left from right and vice versa chars and check each time if palindrome success, once success switch from left to right
+    left, right = s, s 
+    attempts = 1
+    while left != left[::-1] and len(s)//attempts > 0:
+        left = left[-1]
+        attempts += 1
+
+print(build_palindrome('abac'))
+print(5//3)
 
 
 # # 142. Linked List Cycle II
