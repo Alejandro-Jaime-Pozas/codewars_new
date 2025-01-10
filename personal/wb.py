@@ -4,6 +4,9 @@ from typing import Optional, List
 
 
 
+
+
+
 # # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -12,10 +15,19 @@ from typing import Optional, List
 #         self.right = right
 # class Solution:
 #     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-#         return 
+#         # you visit first left then right..should return order top >> down, left >> right
+#         if not root:
+#             return [] 
+#         return [root.val] + \
+#             self.preorderTraversal(root.left) + \
+#             self.preorderTraversal(root.right)
     
 
 # root = TreeNode(1)
+# root.left = TreeNode(2)
+# root.left.left = TreeNode(4)
+# root.left.right = TreeNode(5)
+# root.right = TreeNode(8)
 
 
 # print(Solution().preorderTraversal(root))
