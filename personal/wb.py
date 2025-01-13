@@ -3,10 +3,6 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-
-
-
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -14,14 +10,21 @@ class TreeNode:
         self.left = left
         self.right = right
 class Solution:
-    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        # you visit first left then right..should return order top >> down, left >> right
-        if not root:
-            return [] 
-        return [root.val] + \
-            self.preorderTraversal(root.left) + \
-            self.preorderTraversal(root.right)
-    
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        # post is leftmost leaf first, then right, then move upwards
+        final = []
+
+        def dfs(root):
+            if not root:
+                return 
+            # first visit left, then right 
+            dfs(root.left)
+            dfs(root.right)
+            final.append(root.val)
+
+        dfs(root)
+        return final 
+
 
 root = TreeNode(1)
 root.left = TreeNode(2)
@@ -30,7 +33,33 @@ root.left.right = TreeNode(5)
 root.right = TreeNode(8)
 
 
-print(Solution().preorderTraversal(root))
+print(Solution().postorderTraversal(root))
+
+
+# # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# class Solution:
+#     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+#         # you visit first left then right..should return order top >> down, left >> right
+#         if not root:
+#             return [] 
+#         return [root.val] + \
+#             self.preorderTraversal(root.left) + \
+#             self.preorderTraversal(root.right)
+    
+
+# root = TreeNode(1)
+# root.left = TreeNode(2)
+# root.left.left = TreeNode(4)
+# root.left.right = TreeNode(5)
+# root.right = TreeNode(8)
+
+
+# print(Solution().preorderTraversal(root))
 
 
 # def build_palindrome(s):
