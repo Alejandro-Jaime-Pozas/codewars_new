@@ -3,65 +3,69 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 160. Intersection of Two Linked Lists
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
 
-class Solution:
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        # O(1) memory
-        # if intersection node, that node will have 2 pointers to it, so its prev nodes will point to it and are the key (but have to keep the list intact in same order)
-        # or the key could be in getting the list length...if the lists are different lengths, then the intersection node will be the same distance from the end of the list
-        # if diff lengths, start the longer one at the same distance from the end as the shorter one, then move both by 1 until they meet
-        len_a, len_b = 0, 0
-        curr_a, curr_b = headA, headB
-        while curr_a or curr_b:
-            if curr_a:
-                len_a += 1
-                curr_a = curr_a.next 
-            if curr_b:
-                len_b += 1
-                curr_b = curr_b.next 
-        curr_a, curr_b = headA, headB
-        if len_a > len_b:
-            # set curr to be same len as other list
-            while len_a > len_b:
-                curr_a = curr_a.next
-                len_a -= 1
-        elif len_b > len_a:
-            # set curr to be same len as other list
-            while len_b > len_a:
-                curr_b = curr_b.next
-                len_b -= 1
-        # else means they're equal, so start final while loop
-        while curr_a and curr_b:
-            if curr_a == curr_b:
-                return curr_a
-            curr_a, curr_b = curr_a.next, curr_b.next 
-        return None 
+
+
+
+# # 160. Intersection of Two Linked Lists
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+# class Solution:
+#     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+#         # O(1) memory
+#         # if intersection node, that node will have 2 pointers to it, so its prev nodes will point to it and are the key (but have to keep the list intact in same order)
+#         # or the key could be in getting the list length...if the lists are different lengths, then the intersection node will be the same distance from the end of the list
+#         # if diff lengths, start the longer one at the same distance from the end as the shorter one, then move both by 1 until they meet
+#         len_a, len_b = 0, 0
+#         curr_a, curr_b = headA, headB
+#         while curr_a or curr_b:
+#             if curr_a:
+#                 len_a += 1
+#                 curr_a = curr_a.next 
+#             if curr_b:
+#                 len_b += 1
+#                 curr_b = curr_b.next 
+#         curr_a, curr_b = headA, headB
+#         if len_a > len_b:
+#             # set curr to be same len as other list
+#             while len_a > len_b:
+#                 curr_a = curr_a.next
+#                 len_a -= 1
+#         elif len_b > len_a:
+#             # set curr to be same len as other list
+#             while len_b > len_a:
+#                 curr_b = curr_b.next
+#                 len_b -= 1
+#         # else means they're equal, so start final while loop
+#         while curr_a and curr_b:
+#             if curr_a == curr_b:
+#                 return curr_a
+#             curr_a, curr_b = curr_a.next, curr_b.next 
+#         return None 
         
         
-        # # best way i can think to solve is to store the seen nodes in a list, and check for each list if node in seen
-        # seen = set()
-        # # while not seen node and while either or both lists still have next node, check the active list's next node if in seen
-        # while headA:
-        #     seen.add(headA)
-        #     headA = headA.next
-        # while headB:
-        #     if headB in seen:
-        #         return headB 
-        #     headB = headB.next 
-        # return None 
+#         # # best way i can think to solve is to store the seen nodes in a list, and check for each list if node in seen
+#         # seen = set()
+#         # # while not seen node and while either or both lists still have next node, check the active list's next node if in seen
+#         # while headA:
+#         #     seen.add(headA)
+#         #     headA = headA.next
+#         # while headB:
+#         #     if headB in seen:
+#         #         return headB 
+#         #     headB = headB.next 
+#         # return None 
 
-headA = ListNode(1)
-headA.next = ListNode(3)
-headB = ListNode(2)
-headB.next = headA.next 
+# headA = ListNode(1)
+# headA.next = ListNode(3)
+# headB = ListNode(2)
+# headB.next = headA.next 
 
-print(Solution().getIntersectionNode(headA, headB))
+# print(Solution().getIntersectionNode(headA, headB))
 
 
 
