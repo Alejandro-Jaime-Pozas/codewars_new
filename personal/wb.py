@@ -3,24 +3,28 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-class Solution:
-    def convertToTitle(self, n: int) -> str:
-        # given integer, return excel column title
-        # first 26 straightfwd
-        # pattern every 26 is to add a new letter to the left
-        # A, AA, AAA, AAAA, AAAAA
-        # B, AB, AAB, AAAB, AAAAB
-        # should be doable with just one str ref for alphabet
-        alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        # return self.convertToTitle(n // 26) + alph[n % 26 - 1] if n > 26 else alph[n-1]
-        if n < 26:
-            return alph[n-1]
-        return self.convertToTitle((n // 26+1)-1) + alph[n % 26 -1]
 
 
-base = 678
-print(Solution().convertToTitle(base))
-print(base//26, base%26)
+
+
+# class Solution:
+#     def convertToTitle(self, n: int) -> str:
+#         # given integer, return excel column title
+#         # first 26 straightfwd
+#         # pattern every 26 is to add a new letter to the left
+#         # A, AA, AAA, AAAA, AAAAA
+#         # B, AB, AAB, AAAB, AAAAB
+#         # should be doable with just one str ref for alphabet
+#         alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#         # return self.convertToTitle(n // 26) + alph[n % 26 - 1] if n > 26 else alph[n-1]
+#         if n < 26:
+#             return alph[n-1]
+#         return self.convertToTitle((n // 26+1)-1) + alph[n % 26 -1]
+
+
+# base = 678
+# print(Solution().convertToTitle(base))
+# print(base//26, base%26)
 
 # # 160. Intersection of Two Linked Lists
 # # Definition for singly-linked list.
