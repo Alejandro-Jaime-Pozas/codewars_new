@@ -3,7 +3,18 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        # majority element is the element that appears more than n/2 times
+        # most logical is maintain a count of the elements seen in for loop
+        count_dict = {}
+        for n in nums:
+            count_dict[n] = count_dict.get(n, 0) + 1
+            if count_dict[n] > len(nums) // 2:
+                return n 
+    
+    
+print(Solution().majorityElement([2,2,1,1,1,2,2]))
 
 
 
