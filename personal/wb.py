@@ -8,10 +8,15 @@ class Solution:
         # majority element is the element that appears more than n/2 times
         # most logical is maintain a count of the elements seen in for loop
         count_dict = {}
+        # perhaps something like storing just one counter, updating
+        # what if you divide the list in half, check majority in both?
+
         for n in nums:
             count_dict[n] = count_dict.get(n, 0) + 1
             if count_dict[n] > len(nums) // 2:
                 return n 
+            
+
     
     
 print(Solution().majorityElement([2,2,1,1,1,2,2]))
