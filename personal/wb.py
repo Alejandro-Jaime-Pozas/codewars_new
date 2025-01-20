@@ -4,22 +4,37 @@ from typing import Optional, List
 
 
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        # majority element is the element that appears more than n/2 times
-        # most logical is maintain a count of the elements seen in for loop
-        count_dict = {}
-        # perhaps something like storing just one counter, updating
-        # what if you divide the list in half, check majority in both?
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        # so just for each letter in word (until reaching end of shortest word) add alternately to final string
+        final = ''
+        longest = 1 if len(word1) > len(word2) else 2
+        last_i = 0
+        for i in range(0, min(len(word1), len(word2))):
+            final += word1[i] + word2[i]
+            last_i = i + 1
+        return final + word1[last_i:] if longest == 1 else final + word2[last_i:]
 
-        for n in nums:
-            count_dict[n] = count_dict.get(n, 0) + 1
-            if count_dict[n] > len(nums) // 2:
-                return n 
+
+print(Solution().mergeAlternately('abc', 'pqr'))
+
+
+# class Solution:
+#     def majorityElement(self, nums: List[int]) -> int:
+#         # majority element is the element that appears more than n/2 times
+#         # most logical is maintain a count of the elements seen in for loop
+#         count_dict = {}
+#         # perhaps something like storing just one counter, updating
+#         # what if you divide the list in half, check majority in both?
+
+#         for n in nums:
+#             count_dict[n] = count_dict.get(n, 0) + 1
+#             if count_dict[n] > len(nums) // 2:
+#                 return n 
             
 
     
     
-print(Solution().majorityElement([2,2,1,1,1,2,2]))
+# print(Solution().majorityElement([2,2,1,1,1,2,2]))
 
 
 
