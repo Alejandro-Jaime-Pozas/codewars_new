@@ -3,26 +3,30 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-class Solution:
-    def mergeAlternately(self, word1: str, word2: str) -> str:
-        # so just for each letter in word (until reaching end of shortest word) add alternately to final string
-        # final = ''
-        # longest = 1 if len(word1) > len(word2) else 2
-        # last_i = 0
-        # for i in range(0, min(len(word1), len(word2))):
-        #     final += word1[i] + word2[i]
-        #     last_i = i + 1
-        # return final + word1[last_i:] if longest == 1 else final + word2[last_i:]
-        final = ''
-        for i in range(0, max(len(word1), len(word2))):
-            if i < len(word1):
-                final += word1[i]
-            if i < len(word2):
-                final += word2[i]
-        return final 
 
 
-print(Solution().mergeAlternately('abcd', 'pq'))
+
+
+# class Solution:
+#     def mergeAlternately(self, word1: str, word2: str) -> str:
+#         # so just for each letter in word (until reaching end of shortest word) add alternately to final string
+#         # final = ''
+#         # longest = 1 if len(word1) > len(word2) else 2
+#         # last_i = 0
+#         # for i in range(0, min(len(word1), len(word2))):
+#         #     final += word1[i] + word2[i]
+#         #     last_i = i + 1
+#         # return final + word1[last_i:] if longest == 1 else final + word2[last_i:]
+#         final = ''
+#         for i in range(0, max(len(word1), len(word2))):
+#             if i < len(word1):
+#                 final += word1[i]
+#             if i < len(word2):
+#                 final += word2[i]
+#         return final 
+
+
+# print(Solution().mergeAlternately('abcd', 'pq'))
 
 
 # class Solution:
