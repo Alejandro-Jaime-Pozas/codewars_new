@@ -3,17 +3,21 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-class Solution:
-    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
-        greatest = max(candies)
-        for i in range(len(candies)):
-            if candies[i] + extraCandies >= greatest:
-                candies[i] = True
-            else:
-                candies[i] = False
-        return candies 
+
+
+
+
+# class Solution:
+#     def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
+#         greatest = max(candies)
+#         for i in range(len(candies)):
+#             if candies[i] + extraCandies >= greatest:
+#                 candies[i] = True
+#             else:
+#                 candies[i] = False
+#         return candies 
     
-print(Solution().kidsWithCandies([2,3,5,1,3], 3))
+# print(Solution().kidsWithCandies([2,3,5,1,3], 3))
 
 
 
