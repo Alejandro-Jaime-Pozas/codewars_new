@@ -3,20 +3,24 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 1071. Greatest Common Divisor of Strings
-class Solution:
-    def gcdOfStrings(self, str1: str, str2: str) -> str:
-        # if you split at 1+ chars present in both strings, should be empty list in both, that is the divisor
-        for i in range(min(len(str1), len(str2)), -1, -1):
-            try:
-                if set(str1.split(str1[:i])) == set(str2.split(str1[:i])) == {''}:
-                    return str1[:i]
-            except ValueError:
-                return ''
+
+
+
+
+# # 1071. Greatest Common Divisor of Strings
+# class Solution:
+#     def gcdOfStrings(self, str1: str, str2: str) -> str:
+#         # if you split at 1+ chars present in both strings, should be empty list in both, that is the divisor
+#         for i in range(min(len(str1), len(str2)), -1, -1):
+#             try:
+#                 if set(str1.split(str1[:i])) == set(str2.split(str1[:i])) == {''}:
+#                     return str1[:i]
+#             except ValueError:
+#                 return ''
         
 
 
-print(Solution().gcdOfStrings('abcabc', 'abc'))
+# print(Solution().gcdOfStrings('abcabc', 'abc'))
 
 
 
