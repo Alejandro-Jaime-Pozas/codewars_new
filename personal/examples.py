@@ -1,4 +1,7 @@
-print(3 ^ 5)
+l = [1,2,3]
+print(sum(l[0:1]))
+
+# print(3 ^ 2)
 
 # a = 'abcdefg'~
 # print(a[::-1])
