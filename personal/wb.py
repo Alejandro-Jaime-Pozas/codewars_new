@@ -2,8 +2,39 @@
 from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
+from collections import deque
+# 345. Reverse Vowels of a String
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        # create deque/stack an insert to left to create reverse list
+        # first run, get all the vowels, second run, insert vowels in reverse
+        # two pointer solution
+        vowels = 'aeiou'
+        s_list = list(s)
+        l, r = 0, len(s)-1
+        while l < r:
+            if s_list[l].lower() not in vowels:
+                l += 1
+            elif s_list[r].lower() not in vowels:
+                r -= 1
+            else:
+                s_list[l], s_list[r] = s_list[r], s_list[l]
+                l, r = l+1, r-1
+        return ''.join(s_list)
+        
+        # list solution
+        # l = deque()
+        # vowels = 'aieou'
+        # for c in s:
+        #     if c.lower() in vowels:
+        #         l.appendleft(c)
+        # s_list = list(s)
+        # for i, c in enumerate(s_list):
+        #     if c.lower() in vowels:
+        #         s_list[i] = l.popleft()
+        # return ''.join(s_list)
 
-
+print(Solution().reverseVowels('IceCreAm'))
 
 
 
