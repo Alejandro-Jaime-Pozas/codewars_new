@@ -3,31 +3,35 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-class Solution:
-    def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        # can only place a 1 for a 0 if
-            # leftmost and next val is 0
-            # rightmost and prev val is 0
-            # is other and prev and next val is 0
-        if n == 0: return True
-        for i in range(0, len(flowerbed)):
-            if i == 0: 
-                if sum(flowerbed[i:i+2]) == 0:
-                    flowerbed[i] = 1
-                    n -= 1
-            elif i == len(flowerbed)-1:
-                if sum(flowerbed[i-1:i+1]) == 0:
-                    flowerbed[i] = 1
-                    n -= 1
-            else:
-                if sum(flowerbed[i-1:i+2]) == 0:
-                    flowerbed[i] = 1
-                    n -= 1 
-            if n == 0:
-                return True
-        return False 
+
+
+
+
+# class Solution:
+#     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+#         # can only place a 1 for a 0 if
+#             # leftmost and next val is 0
+#             # rightmost and prev val is 0
+#             # is other and prev and next val is 0
+#         if n == 0: return True
+#         for i in range(0, len(flowerbed)):
+#             if i == 0: 
+#                 if sum(flowerbed[i:i+2]) == 0:
+#                     flowerbed[i] = 1
+#                     n -= 1
+#             elif i == len(flowerbed)-1:
+#                 if sum(flowerbed[i-1:i+1]) == 0:
+#                     flowerbed[i] = 1
+#                     n -= 1
+#             else:
+#                 if sum(flowerbed[i-1:i+2]) == 0:
+#                     flowerbed[i] = 1
+#                     n -= 1 
+#             if n == 0:
+#                 return True
+#         return False 
     
-print(Solution().canPlaceFlowers([1,0,0,0,1], 2))
+# print(Solution().canPlaceFlowers([1,0,0,0,1], 1))
 
 
 
