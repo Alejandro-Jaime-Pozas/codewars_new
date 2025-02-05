@@ -3,13 +3,34 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# Reverse words in a string
+# Product of Array Except Self
 class Solution:
-    def reverseWords(self, s: str) -> str:
-        # split the string, return it in reverse order
-        return ' '.join(s.split(' ')[::-1])
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        # most obvious is to store product of all, then for i in list div by that num..but no division allowed
+        prod = 1
+        alt = 1
+        for n in nums:
+            prod *= n 
+            if n == 0:
+                continue
+            else:
+                alt *= n
+        for i, n in enumerate(nums):
+            if n == 0:
+                nums[i] = alt
+            else:
+                nums[i] = prod // n
 
-print(Solution().reverseWords('a good   example'))
+print(Solution().productExceptSelf([-1,1,0,-3,3]))
+
+
+# # Reverse words in a string
+# class Solution:
+#     def reverseWords(self, s: str) -> str:
+#         # split the string, return it in reverse order
+#         return ' '.join(s.split(' ')[::-1])
+
+# print(Solution().reverseWords('a good   example'))
 
 
 
