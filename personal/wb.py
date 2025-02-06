@@ -3,25 +3,40 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# Product of Array Except Self
+# 334. Increasing Triplet Subsequence
 class Solution:
-    def productExceptSelf(self, nums: List[int]) -> List[int]:
-        # most obvious is to store product of all, then for i in list div by that num..but no division allowed
-        prod = 1
-        alt = 1
-        for n in nums:
-            prod *= n 
-            if n == 0:
-                continue
-            else:
-                alt *= n
-        for i, n in enumerate(nums):
-            if n == 0:
-                nums[i] = alt
-            else:
-                nums[i] = prod // n
+    def increasingTriplet(self, nums: List[int]) -> bool:
+        # check 2 future nums, if each is subsequently greater than prev, return true
+        # can reset i if a new value is less than prev i and no triplet found yet,
+        # store i, store j, to be able to find k, if no k then False
+        # could store possible 1-2 combinations to check for 3rd...
+        # need 2 successful hikes in line
 
-print(Solution().productExceptSelf([-1,1,0,-3,3]))
+
+    
+print(Solution().increasingTriplet([70,100,10,20,101,30]))  # should return on 101 before 30
+
+
+
+# # Product of Array Except Self
+# class Solution:
+#     def productExceptSelf(self, nums: List[int]) -> List[int]:
+#         # most obvious is to store product of all, then for i in list div by that num..but no division allowed
+#         prod = 1
+#         alt = 1
+#         for n in nums:
+#             prod *= n 
+#             if n == 0:
+#                 continue
+#             else:
+#                 alt *= n
+#         for i, n in enumerate(nums):
+#             if n == 0:
+#                 nums[i] = alt
+#             else:
+#                 nums[i] = prod // n
+
+# print(Solution().productExceptSelf([-1,1,0,-3,3]))
 
 
 # # Reverse words in a string
