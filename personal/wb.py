@@ -3,28 +3,64 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 334. Increasing Triplet Subsequence
+# 443. String Compression
 class Solution:
-    def increasingTriplet(self, nums: List[int]) -> bool:
-        # check 2 future nums, if each is subsequently greater than prev, return true
-        # can reset i if a new value is less than prev i and no triplet found yet,
-        # store i, store j, to be able to find k, if no k then False
-        # could store possible 1-2 combinations to check for 3rd...
-        # need 2 successful hikes in line
-        if len(nums) < 3:
-            return False 
-        i, j = float('inf'), float('inf')
-        for idx in range(len(nums)):
-            if nums[idx] <= i:
-                i = nums[idx]
-            elif nums[idx] <= j:
-                j = nums[idx]
+    def compress(self, chars: List[str]) -> int:
+        # Begin with an empty string s. For each group of consecutive repeating characters in chars:
+
+        # If the group's length is 1, append the character to s.
+        # Otherwise, append the character followed by the group's length.
+        # The compressed string s should not be returned separately, but instead, be stored in the input character array chars. Note that group lengths that are 10 or longer will be split into multiple characters in chars.
+
+        # After you are done modifying the input array, return the new length of the array.
+
+        # You must write an algorithm that uses only constant extra space.
+
+        s = [chars[0]]
+        count = 1
+        for i in range(0, len(chars)-1):
+            if chars[i+1] == chars[i]:
+                count += 1
+            # elif count == 1 then append char[i+1]
+            elif count == 1:
+                s.append(chars[i+1])
+            # else append the count of prev (split if count > 10 to str), then add new char i+1
             else:
-                return True
-        return False
+                s.extend(list(str(count)))
+                s.append(chars[i+1])
+                count = 1
+            if i == len(chars)-2 and count > 1:
+                s.extend(list(str(count)))
+
+        chars[:len(s)] = s[:len(s)]
+        return len(s)
+
+print(Solution().compress(["a","a","b","b","c","c","c"]))
+
+
+
+# # 334. Increasing Triplet Subsequence
+# class Solution:
+#     def increasingTriplet(self, nums: List[int]) -> bool:
+#         # check 2 future nums, if each is subsequently greater than prev, return true
+#         # can reset i if a new value is less than prev i and no triplet found yet,
+#         # store i, store j, to be able to find k, if no k then False
+#         # could store possible 1-2 combinations to check for 3rd...
+#         # need 2 successful hikes in line
+#         if len(nums) < 3:
+#             return False 
+#         i, j = float('inf'), float('inf')
+#         for idx in range(len(nums)):
+#             if nums[idx] <= i:
+#                 i = nums[idx]
+#             elif nums[idx] <= j:
+#                 j = nums[idx]
+#             else:
+#                 return True
+#         return False
 
     
-print(Solution().increasingTriplet([70,100,10,20,101,30]))  # should return on 101 before 30
+# print(Solution().increasingTriplet([70,100,10,20,101,30]))  # should return on 101 before 30
 
 
 
