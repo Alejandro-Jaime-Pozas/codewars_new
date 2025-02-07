@@ -11,7 +11,17 @@ class Solution:
         # store i, store j, to be able to find k, if no k then False
         # could store possible 1-2 combinations to check for 3rd...
         # need 2 successful hikes in line
-
+        if len(nums) < 3:
+            return False 
+        i, j = float('inf'), float('inf')
+        for idx in range(len(nums)):
+            if nums[idx] <= i:
+                i = nums[idx]
+            elif nums[idx] <= j:
+                j = nums[idx]
+            else:
+                return True
+        return False
 
     
 print(Solution().increasingTriplet([70,100,10,20,101,30]))  # should return on 101 before 30
