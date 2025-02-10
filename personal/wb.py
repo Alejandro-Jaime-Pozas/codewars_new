@@ -3,7 +3,23 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
+# Move Zeroes
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        # could switch all zero values found with right pointer, then re-order the list up until 0
+        l, r = 0, len(nums)-1
+        while l < r:
+            while nums[r] == 0:
+                r -= 1
+            if nums[l] == 0:
+                nums[l], nums[r] = nums[r], nums[l]
+                
+        
 
+print(Solution().moveZeroes([0,1,0,3,12]))
 
 
 
