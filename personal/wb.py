@@ -9,17 +9,24 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # could switch all zero values found with right pointer, then re-order the list up until 0
-        l, r = 0, len(nums)-1
-        while l < r:
-            while nums[r] == 0:
-                r -= 1
-            if nums[l] == 0:
-                nums[l], nums[r] = nums[r], nums[l]
-                
+        # for each n, if 0 and next not zero, switch, else find next zero
+        l = 0
+        r = 1
+        if len(nums) > 1:
+            while r < len(nums):
+                if nums[l] == 0:
+                    while r < len(nums) and nums[r] == 0:
+                        r += 1
+                    # l == 0 and r != 0, so switch
+                    if r < len(nums):
+                        nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r += 1
+        return nums
         
 
 print(Solution().moveZeroes([0,1,0,3,12]))
+print(Solution().moveZeroes([0,1,0]))
 
 
 
