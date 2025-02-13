@@ -3,30 +3,50 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# Move Zeroes
+
+# 392. Is Subsequence
 class Solution:
-    def moveZeroes(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        # for each n, if 0 and next not zero, switch, else find next zero
-        l = 0
-        r = 1
-        if len(nums) > 1:
-            while r < len(nums):
-                if nums[l] == 0:
-                    while r < len(nums) and nums[r] == 0:
-                        r += 1
-                    # l == 0 and r != 0, so switch
-                    if r < len(nums):
-                        nums[l], nums[r] = nums[r], nums[l]
-                l += 1
-                r += 1
-        return nums
+    def isSubsequence(self, s: str, t: str) -> bool:
+        # pointer in each of the two strings s and t
+        # check in order chars from s in t, once found move s to next index position
+        if not len(s): return True
+        j = 0
+        for i, c in enumerate(t):
+            if c == s[j]:
+                j += 1
+            if j == len(s):
+                return True
+        return False 
+
+
+print(Solution().isSubsequence('aec', 'ahbgdc'))
+
+
+
+# # Move Zeroes
+# class Solution:
+#     def moveZeroes(self, nums: List[int]) -> None:
+#         """
+#         Do not return anything, modify nums in-place instead.
+#         """
+#         # for each n, if 0 and next not zero, switch, else find next zero
+#         l = 0
+#         r = 1
+#         if len(nums) > 1:
+#             while r < len(nums):
+#                 if nums[l] == 0:
+#                     while r < len(nums) and nums[r] == 0:
+#                         r += 1
+#                     # l == 0 and r != 0, so switch
+#                     if r < len(nums):
+#                         nums[l], nums[r] = nums[r], nums[l]
+#                 l += 1
+#                 r += 1
+#         return nums
         
 
-print(Solution().moveZeroes([0,1,0,3,12]))
-print(Solution().moveZeroes([0,1,0]))
+# print(Solution().moveZeroes([0,1,0,3,12]))
+# print(Solution().moveZeroes([0,1,0]))
 
 
 
