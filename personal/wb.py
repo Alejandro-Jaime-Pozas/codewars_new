@@ -4,22 +4,26 @@ from typing import Optional, List
 
 
 
-# 392. Is Subsequence
-class Solution:
-    def isSubsequence(self, s: str, t: str) -> bool:
-        # pointer in each of the two strings s and t
-        # check in order chars from s in t, once found move s to next index position
-        if not len(s): return True
-        j = 0
-        for i, c in enumerate(t):
-            if c == s[j]:
-                j += 1
-            if j == len(s):
-                return True
-        return False 
 
 
-print(Solution().isSubsequence('aec', 'ahbgdc'))
+
+
+# # 392. Is Subsequence
+# class Solution:
+#     def isSubsequence(self, s: str, t: str) -> bool:
+#         # pointer in each of the two strings s and t
+#         # check in order chars from s in t, once found move s to next index position
+#         if not len(s): return True
+#         j = 0
+#         for i, c in enumerate(t):
+#             if c == s[j]:
+#                 j += 1
+#             if j == len(s):
+#                 return True
+#         return False 
+
+
+# print(Solution().isSubsequence('aec', 'ahbgdc'))
 
 
 
