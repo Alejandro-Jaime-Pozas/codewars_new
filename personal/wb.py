@@ -4,7 +4,29 @@ from typing import Optional, List
 
 
 
+# 11. Container With Most Water
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        # what constitutes an ith line from creating a larger container?
+        # obviously, the greater the numbers and the greater the separation, the greater the container
+        # the max achievable area is limited by the lowest of the two final numbers
+        # we do need to traverse entire list
+        max_area = 0
+        l, r = 0, len(height)-1
+        while l < r:
+            if min(height[l], height[r]) * (r - l) > max_area:
+                max_area = min(height[l], height[r]) * (r - l)
+            # shift the smallest of the two pointers
+            if height[l] < height[r]:
+                l += 1
+            else:
+                r -= 1
 
+        return max_area
+    
+
+print(Solution().maxArea([1,8,6,2,5,4,8,3,7]))
+print(Solution().maxArea([8,7,2,1]))
 
 
 
