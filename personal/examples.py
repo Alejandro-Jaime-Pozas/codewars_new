@@ -1,5 +1,14 @@
-l = [1,2,3]
-print(sum(l[0:1]))
+di = {}
+
+di['a'] = 1
+di['b'] = 2
+di['c'] = 3
+
+for k in di:
+    print(di[k])
+
+# l = [1,2,3]
+# print(sum(l[0:1]))
 
 # print(3 ^ 2)
 
