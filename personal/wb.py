@@ -2,33 +2,61 @@
 from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
-class Solution:
-    def maxOperations(self, nums: List[int], k: int) -> int:
-        # each num could potentially sum with any other num to get k, so need to for each num, check all other possible nums
-        # so how to improve on O(n^2) time if possible?
-        # once you have a num, then all need to find is k - num if that is in list.
-        # nums are all positive
-        # if we sort nums, can check l,r vs k and move either l/r if none found. 
-        # if both pairs add up, then +/- 1 l/r to 
-        pairs = 0
-        nums.sort()  # O(n log n) better than n^2
-        l, r = 0, len(nums)-1
-        while l < r:
-            # if l+r = k, then add 1 to pairs, move both l,r over 1
-            if nums[l] + nums[r] == k:
-                pairs += 1
-                l += 1
-                r -= 1
-            # elif l+r < k, then move left since next value will be = or closer to k
-            elif nums[l] + nums[r] < k:
-                l += 1
-            else:
-                r -= 1
-        return pairs 
+
+
+
+
+
+
+# # 643. Maximum Average Subarray I
+# class Solution:
+#     def findMaxAverage(self, nums: List[int], k: int) -> float:
+#         # basically require a window of nums from nums, check each window's max avg
+#         # find more efficient way to move avgs (ie. remove the first num, add the last to next calc)
+#         # drop first, add last
+#         max_sum = sum(nums[0:k])
+#         this_sum = max_sum
+#         prev_first = nums[0]
+#         for i in range(1, len(nums)-k+1):
+#             # if max_sum - prev first + this last > max_sum, change max_sum
+#             this_sum = this_sum - prev_first + nums[i+k-1]
+#             if this_sum > max_sum:
+#                 max_sum = this_sum
+#             prev_first = nums[i]
+#         return max_sum / k 
+
+# print(Solution().findMaxAverage([0,4,0,3,2], 1))
+
+
+
+# 1679. Max Number of K-Sum Pairs
+# class Solution:
+#     def maxOperations(self, nums: List[int], k: int) -> int:
+#         # each num could potentially sum with any other num to get k, so need to for each num, check all other possible nums
+#         # so how to improve on O(n^2) time if possible?
+#         # once you have a num, then all need to find is k - num if that is in list.
+#         # nums are all positive
+#         # if we sort nums, can check l,r vs k and move either l/r if none found. 
+#         # if both pairs add up, then +/- 1 l/r to 
+#         pairs = 0
+#         nums.sort()  # O(n log n) better than n^2
+#         l, r = 0, len(nums)-1
+#         while l < r:
+#             # if l+r = k, then add 1 to pairs, move both l,r over 1
+#             if nums[l] + nums[r] == k:
+#                 pairs += 1
+#                 l += 1
+#                 r -= 1
+#             # elif l+r < k, then move left since next value will be = or closer to k
+#             elif nums[l] + nums[r] < k:
+#                 l += 1
+#             else:
+#                 r -= 1
+#         return pairs 
     
 
-print(Solution().maxOperations([1,2,3,4], 5))
-print(Solution().maxOperations([3,1,3,4,3], 6))
+# print(Solution().maxOperations([1,2,3,4], 5))
+# print(Solution().maxOperations([3,1,3,4,3], 6))
 
 
 # # 11. Container With Most Water
