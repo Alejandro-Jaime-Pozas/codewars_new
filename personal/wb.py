@@ -3,32 +3,55 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 1456. Maximum Number of Vowels in a Substring of Given Length
-class Solution:
-    def maxVowels(self, s: str, k: int) -> int:
-        # must look through entire list to find the max num vowels (unless k consec vowels found return that)
-        # could create deque and popleft, append right for each iter in loop
-        # have a counter for vowels, start with first k chars of s, loop starts at 1 to end - k
-        vowels = 'aieou'
-        counter = 0
-        for c in range(k):
-            if s[c] in vowels:
-                counter += 1
+# # 1004. Max Consecutive Ones III
+# class Solution:
+#     def longestOnes(self, nums: List[int], k: int) -> int:
+#         # go through for loop
+#         # start counting consecutive ones, add to max
+#         # if zero is this value, subtract from flips_remaining
+#         # if nums at i - max == 0, and i == 1, add to flips_remaining
+#         l = r = 0
+#         for r in range(len(nums)):
+#             if nums[r] == 0:
+#                 k -= 1
+#             if k < 0:
+#                 if nums[l] == 0:
+#                     k += 1
+#                 l += 1
+#         return r - l + 1
+            
+
+
+# print(Solution().longestOnes(nums=[1,1,1,0,0,0,1,1,1,1,0], k=2))
+
+
+
+# # 1456. Maximum Number of Vowels in a Substring of Given Length
+# class Solution:
+#     def maxVowels(self, s: str, k: int) -> int:
+#         # must look through entire list to find the max num vowels (unless k consec vowels found return that)
+#         # could create deque and popleft, append right for each iter in loop
+#         # have a counter for vowels, start with first k chars of s, loop starts at 1 to end - k
+#         vowels = 'aieou'
+#         counter = 0
+#         for c in range(k):
+#             if s[c] in vowels:
+#                 counter += 1
         
-        test_counter = counter 
-        for i in range(1, len(s)-k+1):
-            if s[i-1] in vowels:
-                test_counter -= 1
-            if s[i+k-1] in vowels:
-                test_counter += 1
-            if test_counter == k: 
-                return test_counter 
-            elif test_counter > counter:
-                counter = test_counter 
-        return counter 
+#         test_counter = counter 
+#         for i in range(1, len(s)-k+1):
+#             if s[i-1] in vowels:
+#                 test_counter -= 1
+#             if s[i+k-1] in vowels:
+#                 test_counter += 1
+#             if test_counter == k: 
+#                 return test_counter 
+#             elif test_counter > counter:
+#                 counter = test_counter 
+#         return counter 
 
 
-print(Solution().maxVowels('abciiidef', 3))
+# print(Solution().maxVowels('abciiidef', 3))
 
 
 
