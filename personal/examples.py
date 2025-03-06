@@ -1,11 +1,17 @@
-di = {}
+l = r = 10
+for r in range(5):
+    print(r)
+    print(l)
 
-di['a'] = 1
-di['b'] = 2
-di['c'] = 3
 
-for k in di:
-    print(di[k])
+# di = {}
+
+# di['a'] = 1
+# di['b'] = 2
+# di['c'] = 3
+
+# for k in di:
+#     print(di[k])
 
 # l = [1,2,3]
 # print(sum(l[0:1]))
