@@ -3,31 +3,53 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 1493. Longest Subarray of 1's After Deleting One Element
+# 1732. Find the Highest Altitude
 class Solution:
-    def longestSubarray(self, nums: List[int]) -> int:
-        # could be all 1s, all 0s, or combination
-        # you just need to delete one zero, so could go through all zeros to delete while other values are 1
-        # will return length of longest - 1 since need to delete always 1 element
-        # basically if already zero count = 1 and encounter another zero, move left cursor one over (or after last zero index) to get rid of prev zero to make way for new zero
-        # could track for longest subarray in variable longest..only thing missing is tracking longest subarray
-        longest = 0
-        l = 0
-        prev_zero_idx = None 
-        for r in range(len(nums)):
-            if nums[r] == 0:
-                if prev_zero_idx != None:
-                    # means we need to change l cursor to prev + 1, but first check if longest
-                    longest = max(longest, r - l - 1)
-                    l = prev_zero_idx + 1
-                    prev_zero_idx = r
-                else:
-                    prev_zero_idx = r 
-            else:
-                longest = max(longest, r - l)
-        return longest
+    def largestAltitude(self, gain: List[int]) -> int:
+        # starts always at 0, then go up/down next num in list to get altitude
+        # final = [0]
+        # for n in gain:
+        #     final.append(final[-1]+n)
+        # return max(final)
+        # alt solution
+        max_alt = 0
+        curr = 0
+        for n in gain:
+            curr += n 
+            if curr > max_alt:
+                max_alt = curr
+        return max_alt
+        
     
-print(Solution().longestSubarray([1,1,0,1]))
+print(Solution().largestAltitude([-4,-3,-2,-1,4,3,2]))
+
+
+
+# # 1493. Longest Subarray of 1's After Deleting One Element
+# class Solution:
+#     def longestSubarray(self, nums: List[int]) -> int:
+#         # could be all 1s, all 0s, or combination
+#         # you just need to delete one zero, so could go through all zeros to delete while other values are 1
+#         # will return length of longest - 1 since need to delete always 1 element
+#         # basically if already zero count = 1 and encounter another zero, move left cursor one over (or after last zero index) to get rid of prev zero to make way for new zero
+#         # could track for longest subarray in variable longest..only thing missing is tracking longest subarray
+#         longest = 0
+#         l = 0
+#         prev_zero_idx = None 
+#         for r in range(len(nums)):
+#             if nums[r] == 0:
+#                 if prev_zero_idx != None:
+#                     # means we need to change l cursor to prev + 1, but first check if longest
+#                     longest = max(longest, r - l - 1)
+#                     l = prev_zero_idx + 1
+#                     prev_zero_idx = r
+#                 else:
+#                     prev_zero_idx = r 
+#             else:
+#                 longest = max(longest, r - l)
+#         return longest
+    
+# print(Solution().longestSubarray([1,1,0,1]))
 
 
 

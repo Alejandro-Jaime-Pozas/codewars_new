@@ -6,7 +6,7 @@ def switch_window():
     pyautogui.keyDown('alt')  # Hold down the 'alt' key
     pyautogui.press('tab')    # Press 'tab' to switch to the next window
     pyautogui.keyUp('alt')    # Release the 'alt' key
-
+    
 # Loop to continuously switch windows
 while True:
     switch_window()          # Switch to the next window
