@@ -3,25 +3,43 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 1732. Find the Highest Altitude
+# 724. Find Pivot Index
 class Solution:
-    def largestAltitude(self, gain: List[int]) -> int:
-        # starts always at 0, then go up/down next num in list to get altitude
-        # final = [0]
-        # for n in gain:
-        #     final.append(final[-1]+n)
-        # return max(final)
-        # alt solution
-        max_alt = 0
-        curr = 0
-        for n in gain:
-            curr += n 
-            if curr > max_alt:
-                max_alt = curr
-        return max_alt
+    def pivotIndex(self, nums: List[int]) -> int:
+        # the best way should be a binary search approach. start w/midpoint and adjust
+        # can get sum of everything, then add starting from left and compare
+        right_sum = sum(nums)
+        left_sum = 0
+        for i, n in enumerate(nums):
+            right_sum -= n 
+            if left_sum == right_sum:
+                return i 
+            left_sum += n 
+        return -1
+    
+print(Solution().pivotIndex([2,1,-1]))
+
+
+
+# # 1732. Find the Highest Altitude
+# class Solution:
+#     def largestAltitude(self, gain: List[int]) -> int:
+#         # starts always at 0, then go up/down next num in list to get altitude
+#         # final = [0]
+#         # for n in gain:
+#         #     final.append(final[-1]+n)
+#         # return max(final)
+#         # alt solution
+#         max_alt = 0
+#         curr = 0
+#         for n in gain:
+#             curr += n 
+#             if curr > max_alt:
+#                 max_alt = curr
+#         return max_alt
         
     
-print(Solution().largestAltitude([-4,-3,-2,-1,4,3,2]))
+# print(Solution().largestAltitude([-4,-3,-2,-1,4,3,2]))
 
 
 
