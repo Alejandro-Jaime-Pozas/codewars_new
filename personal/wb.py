@@ -3,21 +3,21 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 724. Find Pivot Index
-class Solution:
-    def pivotIndex(self, nums: List[int]) -> int:
-        # the best way should be a binary search approach. start w/midpoint and adjust
-        # can get sum of everything, then add starting from left and compare
-        right_sum = sum(nums)
-        left_sum = 0
-        for i, n in enumerate(nums):
-            right_sum -= n 
-            if left_sum == right_sum:
-                return i 
-            left_sum += n 
-        return -1
+# # 724. Find Pivot Index
+# class Solution:
+#     def pivotIndex(self, nums: List[int]) -> int:
+#         # the best way should be a binary search approach. start w/midpoint and adjust
+#         # can get sum of everything, then add starting from left and compare
+#         right_sum = sum(nums)
+#         left_sum = 0
+#         for i, n in enumerate(nums):
+#             right_sum -= n 
+#             if left_sum == right_sum:
+#                 return i 
+#             left_sum += n 
+#         return -1
     
-print(Solution().pivotIndex([2,1,-1]))
+# print(Solution().pivotIndex([2,1,-1]))
 
 
 
