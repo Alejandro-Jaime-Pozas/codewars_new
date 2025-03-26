@@ -3,6 +3,26 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
+
+
+
+
+# # 1207. Unique Number of Occurrences
+# class Solution:
+#     def uniqueOccurrences(self, arr: List[int]) -> bool:
+#         # perhaps hash dict with key as num, val as count of num
+#         final = {}
+#         for n in arr:
+#             final[n] = final.get(n, 0) + 1
+#         print((final.values()))
+#         return len(final.values()) == len(set(final.values()))
+
+
+# print(Solution().uniqueOccurrences([1,2]))
+
+
+
+
 # # 2215. Find the Difference of Two Arrays
 # class Solution:
 #     def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
