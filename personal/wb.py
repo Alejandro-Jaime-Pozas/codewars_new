@@ -3,23 +3,23 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
-# 2215. Find the Difference of Two Arrays
-class Solution:
-    def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
-        # somehow check each list, if its numbers are in other list
-        # if not, then return 
-        answer = [[], []]
-        set1, set2 = set(nums1), set(nums2)
-        # return [list(set1 - set2), list(set2 - set1)]
-        for n in set1:
-            if n not in set2:
-                answer[0].append(n)
-        for n in set2:
-            if n not in set1:
-                answer[1].append(n)
-        return answer
+# # 2215. Find the Difference of Two Arrays
+# class Solution:
+#     def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+#         # somehow check each list, if its numbers are in other list
+#         # if not, then return 
+#         answer = [[], []]
+#         set1, set2 = set(nums1), set(nums2)
+#         # return [list(set1 - set2), list(set2 - set1)]
+#         for n in set1:
+#             if n not in set2:
+#                 answer[0].append(n)
+#         for n in set2:
+#             if n not in set1:
+#                 answer[1].append(n)
+#         return answer
 
-print(Solution().findDifference([1,2,3,3], [1,1,2,2]))
+# print(Solution().findDifference([1,2,3,3], [1,1,2,2]))
 
 
 
