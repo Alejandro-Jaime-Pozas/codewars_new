@@ -3,7 +3,32 @@ from typing import Optional, List
 # INCLUDE THIS ALWAYS!!!
 
 
+# 1657. Determine if Two Strings Are Close
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        # can only swap existing letters within the str
+        # can only swap two distinct letters, but multiple times
+        # should always take one str and convert to the other
+        # does letter order matter? NO bc if one of each char and match each other should be good?
+        # all we need to do is match occurrences of each char
+        # so, in the end both strings need: same distinct num chars, and same counts. if word1 has counts 1, 2, 4 then word2 also needs same counts
+        set1, set2 = set(), set()
+        if len(word1) != len(word2) \
+        or len(set1) != len(set2): 
+            return False
+        # check if all chars from word1 in word2,  
+        for char in set1:
+            if char not in set2:
+                return False
+        count_w1, count_w2 = {}, {}
+        for c in word1:
+            count_w1[c] = count_w1.get(c, 0) + 1
+        for c in word2:
+            count_w2[c] = count_w2.get(c, 0) + 1
+        
 
+
+print(Solution().closeStrings('cabbba', 'abbccc'))
 
 
 
