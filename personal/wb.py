@@ -1,5 +1,6 @@
 # INCLUDE THIS ALWAYS!!!
 from typing import Optional, List
+from collections import Counter
 # INCLUDE THIS ALWAYS!!!
 
 
@@ -12,23 +13,22 @@ class Solution:
         # does letter order matter? NO bc if one of each char and match each other should be good?
         # all we need to do is match occurrences of each char
         # so, in the end both strings need: same distinct num chars, and same counts. if word1 has counts 1, 2, 4 then word2 also needs same counts
-        set1, set2 = set(), set()
+        set1, set2 = set(word1), set(word2)
         if len(word1) != len(word2) \
-        or len(set1) != len(set2): 
+        or set1 != set2: 
             return False
-        # check if all chars from word1 in word2,  
-        for char in set1:
-            if char not in set2:
-                return False
         count_w1, count_w2 = {}, {}
         for c in word1:
             count_w1[c] = count_w1.get(c, 0) + 1
         for c in word2:
             count_w2[c] = count_w2.get(c, 0) + 1
-        
+        # values1 = list(sorted(count_w1.values()))
+        # values2 = list(sorted(count_w2.values()))
+        print(Counter(count_w1), Counter(count_w2))
+        # return values1 == values2
 
 
-# print(Solution().closeStrings('cabbba', 'abbccc'))
+print(Solution().closeStrings('abbzccca', 'babzzczc'))
 
 
 
