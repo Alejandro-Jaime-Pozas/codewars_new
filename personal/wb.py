@@ -4,31 +4,35 @@ from collections import Counter
 # INCLUDE THIS ALWAYS!!!
 
 
-# 2352. Equal Row and Column Pairs
-class Solution:
-    def equalPairs(self, grid: List[List[int]]) -> int:
-        # looking for equal arrays, if array is equal add 1 to count of total pairs
-        # a row can have 0, 1, or multiple column matches and vice versa
-        # but must be in order left-right, top-down
-        # need to iterate through all possibilities?
-        # could store two sets, a rows set and cols set. check if new row in cols, vice versa
-        total_pairs = 0
-        rows_hash = {}
-        cols_hash = {}
-        cols_list = [[]]*len(grid)
-        for row in grid:
-            rows_hash[tuple(row)] = rows_hash.get(tuple(row), 0) + 1
-            # for cols list, add to it
-            for j, col in enumerate(row):
-                cols_list[j] = cols_list[j] + [col]
-        for col in cols_list:
-            cols_hash[tuple(col)] = cols_hash.get(tuple(col), 0) + 1
-        for key in rows_hash:
-            if key in cols_hash:
-                total_pairs += rows_hash[key] * cols_hash[key]
-        return total_pairs
 
-print(Solution().equalPairs([[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]))
+
+
+
+# # 2352. Equal Row and Column Pairs
+# class Solution:
+#     def equalPairs(self, grid: List[List[int]]) -> int:
+#         # looking for equal arrays, if array is equal add 1 to count of total pairs
+#         # a row can have 0, 1, or multiple column matches and vice versa
+#         # but must be in order left-right, top-down
+#         # need to iterate through all possibilities?
+#         # could store two sets, a rows set and cols set. check if new row in cols, vice versa
+#         total_pairs = 0
+#         rows_hash = {}
+#         cols_hash = {}
+#         cols_list = [[]]*len(grid)
+#         for row in grid:
+#             rows_hash[tuple(row)] = rows_hash.get(tuple(row), 0) + 1
+#             # for cols list, add to it
+#             for j, col in enumerate(row):
+#                 cols_list[j] = cols_list[j] + [col]
+#         for col in cols_list:
+#             cols_hash[tuple(col)] = cols_hash.get(tuple(col), 0) + 1
+#         for key in rows_hash:
+#             if key in cols_hash:
+#                 total_pairs += rows_hash[key] * cols_hash[key]
+#         return total_pairs
+
+# print(Solution().equalPairs([[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]))
 
 
 
