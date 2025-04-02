@@ -1,7 +1,11 @@
-l = r = 10
-for r in range(5):
-    print(r)
-    print(l)
+ls = [1,2,3]
+ls.extend((4,5,6))
+print(ls)
+
+# l = r = 10
+# for r in range(5):
+#     print(r)
+#     print(l)
 
 
 # di = {}
@@ -44,7 +48,7 @@ for r in range(5):
 # )
 
 
-# # 
+# #
 # d = {
 #     0: '1',
 #     1: '2'

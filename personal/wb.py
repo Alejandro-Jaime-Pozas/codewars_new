@@ -7,9 +7,28 @@ from collections import Counter
 # 2352. Equal Row and Column Pairs
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
-        return 
-    
-print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
+        # looking for equal arrays, if array is equal add 1 to count of total pairs
+        # a row can have 0, 1, or multiple column matches and vice versa
+        # but must be in order left-right, top-down
+        # need to iterate through all possibilities?
+        # could store two sets, a rows set and cols set. check if new row in cols, vice versa
+        total_pairs = 0
+        rows_hash = {}
+        cols_hash = {}
+        cols_list = [[]]*len(grid)
+        for row in grid:
+            rows_hash[tuple(row)] = rows_hash.get(tuple(row), 0) + 1
+            # for cols list, add to it
+            for j, col in enumerate(row):
+                cols_list[j] = cols_list[j] + [col]
+        for col in cols_list:
+            cols_hash[tuple(col)] = cols_hash.get(tuple(col), 0) + 1
+        for key in rows_hash:
+            if key in cols_hash:
+                total_pairs += rows_hash[key] * cols_hash[key]
+        return total_pairs
+
+print(Solution().equalPairs([[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]))
 
 
 
@@ -24,7 +43,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # so, in the end both strings need: same distinct num chars, and same counts. if word1 has counts 1, 2, 4 then word2 also needs same counts
         # set1, set2 = set(word1), set(word2)
         # if len(word1) != len(word2) \
-        # or set1 != set2: 
+        # or set1 != set2:
         #     return False
         # count_w1, count_w2 = {}, {}
         # for c in word1:
@@ -61,7 +80,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 # class Solution:
 #     def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
 #         # somehow check each list, if its numbers are in other list
-#         # if not, then return 
+#         # if not, then return
 #         answer = [[], []]
 #         set1, set2 = set(nums1), set(nums2)
 #         # return [list(set1 - set2), list(set2 - set1)]
@@ -85,12 +104,12 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         right_sum = sum(nums)
 #         left_sum = 0
 #         for i, n in enumerate(nums):
-#             right_sum -= n 
+#             right_sum -= n
 #             if left_sum == right_sum:
-#                 return i 
-#             left_sum += n 
+#                 return i
+#             left_sum += n
 #         return -1
-    
+
 # print(Solution().pivotIndex([2,1,-1]))
 
 
@@ -107,12 +126,12 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         max_alt = 0
 #         curr = 0
 #         for n in gain:
-#             curr += n 
+#             curr += n
 #             if curr > max_alt:
 #                 max_alt = curr
 #         return max_alt
-        
-    
+
+
 # print(Solution().largestAltitude([-4,-3,-2,-1,4,3,2]))
 
 
@@ -127,7 +146,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # could track for longest subarray in variable longest..only thing missing is tracking longest subarray
 #         longest = 0
 #         l = 0
-#         prev_zero_idx = None 
+#         prev_zero_idx = None
 #         for r in range(len(nums)):
 #             if nums[r] == 0:
 #                 if prev_zero_idx != None:
@@ -136,11 +155,11 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                     l = prev_zero_idx + 1
 #                     prev_zero_idx = r
 #                 else:
-#                     prev_zero_idx = r 
+#                     prev_zero_idx = r
 #             else:
 #                 longest = max(longest, r - l)
 #         return longest
-    
+
 # print(Solution().longestSubarray([1,1,0,1]))
 
 
@@ -161,7 +180,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                     k += 1
 #                 l += 1
 #         return r - l + 1
-            
+
 
 
 # print(Solution().longestOnes(nums=[1,1,1,0,0,0,1,1,1,1,0], k=2))
@@ -179,18 +198,18 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         for c in range(k):
 #             if s[c] in vowels:
 #                 counter += 1
-        
-#         test_counter = counter 
+
+#         test_counter = counter
 #         for i in range(1, len(s)-k+1):
 #             if s[i-1] in vowels:
 #                 test_counter -= 1
 #             if s[i+k-1] in vowels:
 #                 test_counter += 1
-#             if test_counter == k: 
-#                 return test_counter 
+#             if test_counter == k:
+#                 return test_counter
 #             elif test_counter > counter:
-#                 counter = test_counter 
-#         return counter 
+#                 counter = test_counter
+#         return counter
 
 
 # print(Solution().maxVowels('abciiidef', 3))
@@ -213,7 +232,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #             if this_sum > max_sum:
 #                 max_sum = this_sum
 #             prev_first = nums[i]
-#         return max_sum / k 
+#         return max_sum / k
 
 # print(Solution().findMaxAverage([0,4,0,3,2], 1))
 
@@ -226,8 +245,8 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # so how to improve on O(n^2) time if possible?
 #         # once you have a num, then all need to find is k - num if that is in list.
 #         # nums are all positive
-#         # if we sort nums, can check l,r vs k and move either l/r if none found. 
-#         # if both pairs add up, then +/- 1 l/r to 
+#         # if we sort nums, can check l,r vs k and move either l/r if none found.
+#         # if both pairs add up, then +/- 1 l/r to
 #         pairs = 0
 #         nums.sort()  # O(n log n) better than n^2
 #         l, r = 0, len(nums)-1
@@ -242,8 +261,8 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 l += 1
 #             else:
 #                 r -= 1
-#         return pairs 
-    
+#         return pairs
+
 
 # print(Solution().maxOperations([1,2,3,4], 5))
 # print(Solution().maxOperations([3,1,3,4,3], 6))
@@ -268,7 +287,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 r -= 1
 
 #         return max_area
-    
+
 
 # print(Solution().maxArea([1,8,6,2,5,4,8,3,7]))
 # print(Solution().maxArea([8,7,2,1]))
@@ -287,7 +306,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 j += 1
 #             if j == len(s):
 #                 return True
-#         return False 
+#         return False
 
 
 # print(Solution().isSubsequence('aec', 'ahbgdc'))
@@ -314,7 +333,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 l += 1
 #                 r += 1
 #         return nums
-        
+
 
 # print(Solution().moveZeroes([0,1,0,3,12]))
 # print(Solution().moveZeroes([0,1,0]))
@@ -366,7 +385,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # could store possible 1-2 combinations to check for 3rd...
 #         # need 2 successful hikes in line
 #         if len(nums) < 3:
-#             return False 
+#             return False
 #         i, j = float('inf'), float('inf')
 #         for idx in range(len(nums)):
 #             if nums[idx] <= i:
@@ -377,7 +396,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 return True
 #         return False
 
-    
+
 # print(Solution().increasingTriplet([70,100,10,20,101,30]))  # should return on 101 before 30
 
 
@@ -389,7 +408,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         prod = 1
 #         alt = 1
 #         for n in nums:
-#             prod *= n 
+#             prod *= n
 #             if n == 0:
 #                 continue
 #             else:
@@ -432,7 +451,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 s_list[l], s_list[r] = s_list[r], s_list[l]
 #                 l, r = l+1, r-1
 #         return ''.join(s_list)
-        
+
 #         # list solution
 #         # l = deque()
 #         # vowels = 'aieou'
@@ -457,7 +476,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #             # is other and prev and next val is 0
 #         if n == 0: return True
 #         for i in range(0, len(flowerbed)):
-#             if i == 0: 
+#             if i == 0:
 #                 if sum(flowerbed[i:i+2]) == 0:
 #                     flowerbed[i] = 1
 #                     n -= 1
@@ -468,11 +487,11 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #             else:
 #                 if sum(flowerbed[i-1:i+2]) == 0:
 #                     flowerbed[i] = 1
-#                     n -= 1 
+#                     n -= 1
 #             if n == 0:
 #                 return True
-#         return False 
-    
+#         return False
+
 # print(Solution().canPlaceFlowers([1,0,0,0,1], 1))
 
 
@@ -485,8 +504,8 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 candies[i] = True
 #             else:
 #                 candies[i] = False
-#         return candies 
-    
+#         return candies
+
 # print(Solution().kidsWithCandies([2,3,5,1,3], 3))
 
 
@@ -501,7 +520,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                     return str1[:i]
 #             except ValueError:
 #                 return ''
-        
+
 
 
 # print(Solution().gcdOfStrings('abcabc', 'abc'))
@@ -524,7 +543,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 final += word1[i]
 #             if i < len(word2):
 #                 final += word2[i]
-#         return final 
+#         return final
 
 
 # print(Solution().mergeAlternately('abcd', 'pq'))
@@ -541,11 +560,11 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         for n in nums:
 #             count_dict[n] = count_dict.get(n, 0) + 1
 #             if count_dict[n] > len(nums) // 2:
-#                 return n 
-            
+#                 return n
 
-    
-    
+
+
+
 # print(Solution().majorityElement([2,2,1,1,1,2,2]))
 
 
@@ -587,10 +606,10 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         while curr_a or curr_b:
 #             if curr_a:
 #                 len_a += 1
-#                 curr_a = curr_a.next 
+#                 curr_a = curr_a.next
 #             if curr_b:
 #                 len_b += 1
-#                 curr_b = curr_b.next 
+#                 curr_b = curr_b.next
 #         curr_a, curr_b = headA, headB
 #         if len_a > len_b:
 #             # set curr to be same len as other list
@@ -606,10 +625,10 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         while curr_a and curr_b:
 #             if curr_a == curr_b:
 #                 return curr_a
-#             curr_a, curr_b = curr_a.next, curr_b.next 
-#         return None 
-        
-        
+#             curr_a, curr_b = curr_a.next, curr_b.next
+#         return None
+
+
 #         # # best way i can think to solve is to store the seen nodes in a list, and check for each list if node in seen
 #         # seen = set()
 #         # # while not seen node and while either or both lists still have next node, check the active list's next node if in seen
@@ -618,14 +637,14 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         #     headA = headA.next
 #         # while headB:
 #         #     if headB in seen:
-#         #         return headB 
-#         #     headB = headB.next 
-#         # return None 
+#         #         return headB
+#         #     headB = headB.next
+#         # return None
 
 # headA = ListNode(1)
 # headA.next = ListNode(3)
 # headB = ListNode(2)
-# headB.next = headA.next 
+# headB.next = headA.next
 
 # print(Solution().getIntersectionNode(headA, headB))
 
@@ -644,14 +663,14 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 
 #         def dfs(root):
 #             if not root:
-#                 return 
-#             # first visit left, then right 
+#                 return
+#             # first visit left, then right
 #             dfs(root.left)
 #             dfs(root.right)
 #             final.append(root.val)
 
 #         dfs(root)
-#         return final 
+#         return final
 
 
 # root = TreeNode(1)
@@ -674,11 +693,11 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
 #         # you visit first left then right..should return order top >> down, left >> right
 #         if not root:
-#             return [] 
+#             return []
 #         return [root.val] + \
 #             self.preorderTraversal(root.left) + \
 #             self.preorderTraversal(root.right)
-    
+
 
 # root = TreeNode(1)
 # root.left = TreeNode(2)
@@ -695,7 +714,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #     # just need to check if front or back limited numbers of chars will be added to str
 #     # left, right vars
 #     # keep adding to left from right and vice versa chars and check each time if palindrome success, once success switch from left to right
-#     left, right = s, s 
+#     left, right = s, s
 #     attempts = 1
 #     ladd, radd = -1, 0
 #     while left != left[::-1] and len(s)//attempts > 1:
@@ -709,8 +728,8 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         print(right)
 #         attempts += 1
 #         radd += 1
-#     return left if len(left) <= len(right) else right 
-    
+#     return left if len(left) <= len(right) else right
+
 
 # print(build_palindrome('right'))
 
@@ -727,28 +746,28 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # do not create doubly linked list
 #         # two pointer sol that somehow catches the being value...
 #         # how to check if a node has two pointers to it? reverse it, and check if still has next value (means start?)
-#         fast, slow = head, head 
+#         fast, slow = head, head
 #         while fast and fast.next:
-#             # means there is a cycle, continue w/code 
-#             slow = slow.next 
+#             # means there is a cycle, continue w/code
+#             slow = slow.next
 #             fast = fast.next.next
 #             if fast == slow:
-#                 break 
+#                 break
 #         else:
 #             # no cycle found
-#             return None 
-        
+#             return None
+
 #         # now reset the slow pointer to head, keep fast, move both by 1 until meeting
-#         slow = head 
+#         slow = head
 #         while fast != slow:
-#             fast = fast.next 
-#             slow = slow.next 
-#         return fast 
-        
+#             fast = fast.next
+#             slow = slow.next
+#         return fast
+
 #         # # o(n) time, o(n) space first
-#         # # somehow store the index of the node being checked 
+#         # # somehow store the index of the node being checked
 #         # # could store all nodes, check if new next node already seen..
-#         # curr = head 
+#         # curr = head
 #         # seen = set()
 #         # while curr:
 #         #     if curr in seen:
@@ -756,7 +775,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         #     else:
 #         #         seen.add(curr)
 #         #         curr.next
-#         # return None 
+#         # return None
 
 
 # l1 = ListNode(10)
@@ -801,7 +820,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # would prob require 2 constant vars
 #         res = 0
 #         sum_all = sum(nums)
-#         return 
+#         return
 
 
 # print(Solution().singleNumber([0,1,0,1,0,1,99]))
@@ -830,7 +849,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 # # 127. Word Ladder
 # class Solution:
 #     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-#         pass 
+#         pass
 #         # need to change just one letter from each consecutive word and get to the final word
 #         # all word lengths equal
 #         # think you could just find words that replace a single char in curr word with char in final word?
@@ -848,12 +867,12 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # remove all non-alphanumeric chars
 #         # stripped = tuple(filter(lambda c: c.isalnum(), s.lower()))
 #         # l, r = 0, len(stripped)-1
-#         # while l <= r: 
+#         # while l <= r:
 #         #     if stripped[l] != stripped[r]:
-#         #         return False 
+#         #         return False
 #         #     l, r = l+1, r-1
-#         # return True 
-    
+#         # return True
+
 #         s = ''.join(c for c in s.lower() if c.isalnum())
 #         return s == s[::-1]
 
@@ -871,7 +890,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         self.right = right
 # class Solution:
 #     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-#         # just a contiguous path that doesn't split up, continuous 
+#         # just a contiguous path that doesn't split up, continuous
 #         # could also return just one node if that's the max path
 #         # recursive
 #         # how do you prevent splitting subtrees in answer?
@@ -881,12 +900,12 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # return the max path sum w/o splitting
 #         def dfs(root):
 #             if not root:
-#                 return 0 
+#                 return 0
 
 #             left_max = dfs(root.left)
 #             right_max = dfs(root.right)
 #             left_max = max(left_max, 0)
-#             right_max = max(right_max, 0) 
+#             right_max = max(right_max, 0)
 
 #             # compute max path sum WITH split
 #             # update res[0], compare res[0] vs current subtree sum value
@@ -904,7 +923,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 # root.right = TreeNode(20)
 # root.right.left = TreeNode(15)
 # root.right.right = TreeNode(7)
-# print(Solution().maxPathSum(root))        
+# print(Solution().maxPathSum(root))
 
 
 
@@ -930,9 +949,9 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # for each num, check if buy that num, what is max profit achievable in 1 or 2 buy/sell actions from that num forward
 #         # no overlap so grab the two highest profits
 
-    
+
 # print(Solution().maxProfit([3,3,5,0,0,3,1,4]))
-        
+
 
 # # best time to buy and sell stock II
 # class Solution:
@@ -953,11 +972,11 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #             # always sell if you're holding no matter price
 #             if holding:  # means prev price was lower so sell
 #                 holding = False
-#                 profit += prices[i] - last_value 
+#                 profit += prices[i] - last_value
 #             # if not holding, only buy if next price is higher
 #             if prices[i+1] > prices[i]:
 #                 last_value = prices[i]
-#                 holding = True 
+#                 holding = True
 #         return profit
 
 # print(Solution().maxProfit([7,5,1,3,6,10,1,200,1]))
@@ -970,7 +989,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # could sort numbers, do a two pointers to check
 #         # most obvious is n^2 solution go through each...
 #         # is there o of n solution?
-#         # 
+#         #
 #         if len(prices) < 2: return 0
 
 #         max_profit = 0
@@ -981,9 +1000,9 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #                 curr_min = prices[i]
 #                 continue
 #             if prices[i] - curr_min > max_profit:
-#                 max_profit = prices[i] - curr_min 
-                
-#         return max_profit 
+#                 max_profit = prices[i] - curr_min
+
+#         return max_profit
 
 
 # print(Solution().maxProfit([99,100,4,6,1,2]))
@@ -997,7 +1016,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #         # so you can only move to the row below's same index or index + 1 and that's it
 #         # how can you check min path on first glance? impossible need to iterate through all possibilities
 #         # could try the inefficient route, all possible options
-#         # not straightfwd algorithm. 
+#         # not straightfwd algorithm.
 #         return
 
 
@@ -1013,7 +1032,7 @@ print(Solution().equalPairs([[3,2,1],[1,7,6],[2,7,7]]))
 #             return [1]
 #         elif rowIndex == 1:
 #             return [1,1]
-        
+
 #         prev = [1,1]  # acct for this later
 #         for i in range(rowIndex-1):
 #             # pattern is add 1 list item to past list, add all consecutive pairs from past list, outer nums always equal 1
@@ -1038,7 +1057,7 @@ class Solution:
             return [[1]]
         elif numRows == 2:
             return [[1], [1,1]]
-        
+
         final = [[1], [1,1]]  # acct for this later
         for i in range(numRows-2):
             # pattern is add 1 list item to past list, add all consecutive pairs from past list, outer nums always equal 1
@@ -1048,7 +1067,7 @@ class Solution:
             item.append(1)  # always 1 at the end of item
             final.append(item)
 
-        return final 
+        return final
 
 
 
@@ -1070,14 +1089,14 @@ class Solution:
 
 #         # SOLUTION: sum each node, pass that sum to children, when reaching base case/leaf node, if sum = targetSum, return True, if any leaf is True, final output is True else False
 #     def improved(self, root, targetSum, accSum):
-#         if not root: return False 
+#         if not root: return False
 #         elif not root.left and not root.right:  # means this is a leaf node
 #             return accSum + root.val == targetSum
 #         # now the main recursive code
 #         left = self.improved(root.left, targetSum, accSum + root.val)
 #         right = self.improved(root.right, targetSum, accSum + root.val)
 #         # print(f'node: {root.val}, {left}, {right}')
-#         return left or right 
+#         return left or right
 
 
 
@@ -1109,15 +1128,15 @@ class Solution:
 #             return 0
 #         left, right = self.minDepth(root.left), self.minDepth(root.right)
 #         # if this is leaf node, return 1 level to upper fn
-#         # else means not leaf node, 
+#         # else means not leaf node,
 #         # should return minimum of left and right, as long as they're not null nodes.
 #         # if either is a null node, ignore it and continue with other side to obtain min
 #         if not root.left:
-#             return 1 + right 
+#             return 1 + right
 #         elif not root.right:
-#             return 1 + left 
-#         return 1 + min(left, right) 
-        
+#             return 1 + left
+#         return 1 + min(left, right)
+
 
 # root = TreeNode(1)
 # root.left = TreeNode(2)
@@ -1159,9 +1178,9 @@ class Solution:
 # print(Solution().isBalanced(root))
 
 
-# def is_age_diverse(lst): 
+# def is_age_diverse(lst):
 
-#     if len(lst) < 10: return False 
+#     if len(lst) < 10: return False
 
 #     seen = set()
 
@@ -1196,11 +1215,11 @@ class Solution:
 # def zeros(n: int) -> int:
 #     if n == 0: return 0
 #     elif n == 1: return 2
-#     # for anything greater than len 2, always first number is 1. so all possible combinations of n-1 for 0 and 1. 
-#     # 3: 100, 101, 110, 111. =4. 4 - 1. 
-#     # 4: 1000, 1001, 1010, 1100, 1011, 1110, 1101, 1111. =8. 8 - 3. 
+#     # for anything greater than len 2, always first number is 1. so all possible combinations of n-1 for 0 and 1.
+#     # 3: 100, 101, 110, 111. =4. 4 - 1.
+#     # 4: 1000, 1001, 1010, 1100, 1011, 1110, 1101, 1111. =8. 8 - 3.
 #     # 5: =16. 10000, 10010, 10011, 10001, 11001, 11100, 11000, 10100
-#     # raw answer should be 2 ** n-1. but need to remove any nums with consecutive zeroes. should be a way to calculate how many of those. 
+#     # raw answer should be 2 ** n-1. but need to remove any nums with consecutive zeroes. should be a way to calculate how many of those.
 #     # return 2 ** (n - 1)
 #     # pattern 2=4-1, 3=8-3, 4=16-7, 5=32-15, 6=64-31, 7=128-63
 #     # recursive
@@ -1217,7 +1236,7 @@ class Solution:
 #     for vowel_i, c in enumerate(text):
 #         if c in 'aeiou':
 #             list_idx.append(vowel_i)
-#             dict_vowels[vowel_i] = c 
+#             dict_vowels[vowel_i] = c
 #     return 13 % 3
 
 # # [2, 5, 8, 11, 15]
@@ -1234,8 +1253,8 @@ class Solution:
 #     # need to clean out null values first to know how many words and then be able to join those words with commas and 'and'
 #     final = ''
 #     if not words:
-#         return final 
-    
+#         return final
+
 #     words = tuple(filter(None, words))
 #     # if len(words) == 1, then just word, if == 2 then just and, if > 2 then comma all before and...
 #     # use ',' and 'and' depending on len
@@ -1247,8 +1266,8 @@ class Solution:
 #         elif len(words) - i == 2:
 #             final += word + ' and '
 #         elif i == len(words)-1:
-#             final += word 
-#     return final 
+#             final += word
+#     return final
 
 # print(format_words(['', 'one', '', 'two', 'three', '']))
 
@@ -1266,22 +1285,22 @@ class Solution:
 #     left = ''
 #     right = ''
 #     operator = ''
-#     dot_found = False 
+#     dot_found = False
 #     for c in s:
 #         if not operator:  # add to left str, not right
 #             if c in ('+-/*'):  # add operator to variable, reset dot found to false
-#                 operator = c 
-#                 dot_found = False 
+#                 operator = c
+#                 dot_found = False
 #             elif c == ".":  # if '.' then ignore rest of left side
-#                 dot_found = True 
+#                 dot_found = True
 #             elif c.isnumeric() and not dot_found:  # add digits to left side
-#                 left += c 
+#                 left += c
 
 #         elif operator:
 #             if c == ".":  # if '.' then ignore rest of left side
 #                 break  # finish the loop
 #             elif c.isnumeric():  # add digits to left side
-#                 right += c 
+#                 right += c
 
 #     if operator == '+':
 #         return str(round(int(left) + int(right)))
@@ -1291,7 +1310,7 @@ class Solution:
 #         return str(round(int(left) * int(right)))
 #     elif operator == '/':
 #         return str(round(int(left) / int(right)))
-                
+
 
 # print(calculate_string("gdfgdf23.4dg54gf/2.3oP42"))
 
