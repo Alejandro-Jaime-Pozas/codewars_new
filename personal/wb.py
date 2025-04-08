@@ -4,25 +4,29 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 2390. Removing Stars From a String
-class Solution:
-    def removeStars(self, s: str) -> str:
-        # if stars in s, remove the star and the nearest non-start char to its left
-        # can create a new string
-        # only other way i see this is using deque
-        # what if you go left to right? you know how many left side chars to remove
-        stack = []
-
-        for char in s:
-            if char == '*':
-                if stack:
-                    stack.pop()
-            else:
-                stack.append(char)
-        return ''.join(stack)
 
 
-print(Solution().removeStars("leet**cod*e"))
+
+
+# # 2390. Removing Stars From a String
+# class Solution:
+#     def removeStars(self, s: str) -> str:
+#         # if stars in s, remove the star and the nearest non-start char to its left
+#         # can create a new string
+#         # only other way i see this is using deque
+#         # what if you go left to right? you know how many left side chars to remove
+#         stack = []
+
+#         for char in s:
+#             if char == '*':
+#                 if stack:
+#                     stack.pop()
+#             else:
+#                 stack.append(char)
+#         return ''.join(stack)
+
+
+# print(Solution().removeStars("leet**cod*e"))
 
 
 
