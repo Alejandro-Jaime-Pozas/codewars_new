@@ -8,40 +8,40 @@ from collections import Counter, deque
 
 
 
-# 735. Asteroid Collision
-class Solution:
-    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-        # index is the asteroid's position
-        # + is right, - is left
-        # abs number is the size of asteroid
-        # if 2 asteroids meet, smaller one will explode
-        # if both same size, both will explode
-        # if moving in same direction, will never meet
-        stack = []
-        # if val is going right, add to stack
-        # if val is going left, if stack then check to see what happens with collision
-        for a in asteroids:
-            if a > 0:
-                stack.append(a)
-            if a < 0:
-                while stack:
-                    # check which is smallest, or if equal remove both while abs(a) >= stack
-                    if stack[-1] > 0:
-                        if abs(a) > stack[-1]:
-                            stack.pop()
-                        elif abs(a) == stack[-1]:
-                            stack.pop()
-                            break
-                        else:
-                            break
-                    else:
-                        stack.append(a)
-                        break
-                else:
-                    stack.append(a)
-        return stack
+# # 735. Asteroid Collision
+# class Solution:
+#     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+#         # index is the asteroid's position
+#         # + is right, - is left
+#         # abs number is the size of asteroid
+#         # if 2 asteroids meet, smaller one will explode
+#         # if both same size, both will explode
+#         # if moving in same direction, will never meet
+#         stack = []
+#         # if val is going right, add to stack
+#         # if val is going left, if stack then check to see what happens with collision
+#         for a in asteroids:
+#             if a > 0:
+#                 stack.append(a)
+#             if a < 0:
+#                 while stack:
+#                     # check which is smallest, or if equal remove both while abs(a) >= stack
+#                     if stack[-1] > 0:
+#                         if abs(a) > stack[-1]:
+#                             stack.pop()
+#                         elif abs(a) == stack[-1]:
+#                             stack.pop()
+#                             break
+#                         else:
+#                             break
+#                     else:
+#                         stack.append(a)
+#                         break
+#                 else:
+#                     stack.append(a)
+#         return stack
 
-print(Solution().asteroidCollision([5,10,-5]))
+# print(Solution().asteroidCollision([5,10,-5]))
 
 
 
