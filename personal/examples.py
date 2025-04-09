@@ -1,6 +1,67 @@
-ls = [1,2,3]
-ls.extend((4,5,6))
-print(ls)
+class ConstructionGame:
+
+    def __init__(self, length, width):
+        """
+        :param length: (int) Length of the base
+        :param width: (int) Width of the base
+        """
+        self.length = length
+        self.width = width
+        self.current = [[0 for _ in range(self.width)] for _ in range(self.length)]
+
+    def add_cubes(self, cubes):
+        """
+        :param cubes: (list(bool)) The position of each cube to be dropped on the table
+        """
+        # so, you're always dropping length * width cubes when calling add_cubes
+        # True values stack, False values don't stack
+        # operating at just one pair level for current...
+        for i in range(len(self.current)):
+            for j in range(len(self.current[i])):
+                if cubes[i][j] == True:
+                    self.current[i][j] += 1
+                    print('setting current at',i,j,'to + 1')
+                elif cubes[i][j] == False:
+                    self.current[i][j] = self.current[i][j] - 1 if self.current[i][j] > 0 else 0
+                print(cubes[i][j])
+                print(self.current)
+                # print(cubes[i][j])
+                # print(self.current[i][j])
+
+
+    def height(self):
+        """
+        :returns: (int) The maximum vertical height in cubes
+        """
+        max_height = 0
+        for row in self.current:
+            max_height = max(max_height, max(row))
+        return max_height
+
+if __name__ == "__main__":
+    game = ConstructionGame(2, 2)
+
+    game.add_cubes([
+        [True, True],
+        [False, False]
+    ])
+    game.add_cubes([
+        [True, True],
+        [False, True]
+    ])
+    print(game.height())  # should print 2
+
+    game.add_cubes([
+        [False, False],
+        [True, True]
+    ])
+    print(game.height())  # should print 1
+
+
+
+# ls = [1,2,3]
+# ls.extend((4,5,6))
+# print(ls)
 
 # l = r = 10
 # for r in range(5):
