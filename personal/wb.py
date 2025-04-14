@@ -4,48 +4,52 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 394. Decode String
-class Solution:
-    def decodeString(self, s: str) -> str:
-        # brackets will indicate string to repeat, number to left of bracket indicates exact
-        # there can be nested brackets
-        # number will ALWAYS preceed opening bracket
-        # something like if c is digit, if c is open/close bracket, if c is letter
-        # will need a stack for nested brackets
-        # thinking of separating stacks, one for the number, one for the chars and multiply
-        # will need to resolve nested bracket strs first, to calculate outer ones
-        # [3, 2]
-        # [a, c]
-        # multiply number * character, then add prior character to that string, then multiply again
-        # whenever there's equal open to close brackets, trigger multipying stacks and empty stacks
 
-        # Use a stack to handle nested brackets and repeated substrings
-        stack = []
-        current_string = ""
-        current_number = 0
 
-        for char in s:
-            if char.isdigit():
-                # Build the current number (handles multi-digit numbers)
-                current_number = current_number * 10 + int(char)
-            elif char == '[':
-                # Push the current string and number onto the stack
-                stack.append((current_string, current_number))
-                # Reset for the new context inside the brackets
-                current_string = ""
-                current_number = 0
-            elif char == ']':
-                # Pop from the stack and repeat the current string
-                last_string, repeat_count = stack.pop()
-                current_string = last_string + current_string * repeat_count
-            else:
-                # Append the current character to the current string
-                current_string += char
 
-        return current_string
 
-# Example usage
-print(Solution().decodeString('2[abc]3[cd]ef'))  # Output: "abcabccdcdcdef"
+# # 394. Decode String
+# class Solution:
+#     def decodeString(self, s: str) -> str:
+#         # brackets will indicate string to repeat, number to left of bracket indicates exact
+#         # there can be nested brackets
+#         # number will ALWAYS preceed opening bracket
+#         # something like if c is digit, if c is open/close bracket, if c is letter
+#         # will need a stack for nested brackets
+#         # thinking of separating stacks, one for the number, one for the chars and multiply
+#         # will need to resolve nested bracket strs first, to calculate outer ones
+#         # [3, 2]
+#         # [a, c]
+#         # multiply number * character, then add prior character to that string, then multiply again
+#         # whenever there's equal open to close brackets, trigger multipying stacks and empty stacks
+
+#         # Use a stack to handle nested brackets and repeated substrings
+#         stack = []
+#         current_string = ""
+#         current_number = 0
+
+#         for char in s:
+#             if char.isdigit():
+#                 # Build the current number (handles multi-digit numbers)
+#                 current_number = current_number * 10 + int(char)
+#             elif char == '[':
+#                 # Push the current string and number onto the stack
+#                 stack.append((current_string, current_number))
+#                 # Reset for the new context inside the brackets
+#                 current_string = ""
+#                 current_number = 0
+#             elif char == ']':
+#                 # Pop from the stack and repeat the current string
+#                 last_string, repeat_count = stack.pop()
+#                 current_string = last_string + current_string * repeat_count
+#             else:
+#                 # Append the current character to the current string
+#                 current_string += char
+
+#         return current_string
+
+# # Example usage
+# print(Solution().decodeString('2[abc]3[cd]ef'))  # Output: "abcabccdcdcdef"
 
         # final = ''
         # alphas = ''
