@@ -4,30 +4,34 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 933. Number of Recent Calls
-class RecentCounter:
 
-    def __init__(self):
-        self.recent_requests = deque([])
 
-    def ping(self, t: int) -> int:
-        # is an int, should return total number of requests within a range of 3000 ms
-        # need to store prev requests, remove any that become less than the 3000ms range
-        # each time get a ping, the time range changes, so change range first
-        # then check if left part of deque needs to be removed
-        self.recent_requests.append(t)
 
-        range_min = t - 3000
-        while self.recent_requests[0] < range_min:
-            self.recent_requests.popleft()
 
-        return len(self.recent_requests)
+# # 933. Number of Recent Calls
+# class RecentCounter:
 
-obj = RecentCounter()
-print(obj.ping(1))
-print(obj.ping(100))
-print(obj.ping(3001))
-print(obj.ping(3002))
+#     def __init__(self):
+#         self.recent_requests = deque([])
+
+#     def ping(self, t: int) -> int:
+#         # is an int, should return total number of requests within a range of 3000 ms
+#         # need to store prev requests, remove any that become less than the 3000ms range
+#         # each time get a ping, the time range changes, so change range first
+#         # then check if left part of deque needs to be removed
+#         self.recent_requests.append(t)
+
+#         range_min = t - 3000
+#         while self.recent_requests[0] < range_min:
+#             self.recent_requests.popleft()
+
+#         return len(self.recent_requests)
+
+# obj = RecentCounter()
+# print(obj.ping(1))
+# print(obj.ping(100))
+# print(obj.ping(3001))
+# print(obj.ping(3002))
 
 
 # Your RecentCounter object will be instantiated and called as such:
