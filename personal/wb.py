@@ -4,7 +4,46 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
+# 649. Dota2 Senate
+class Solution:
+    def predictPartyVictory(self, senate: str) -> str:
+        # for the end string/list, check if only 'R's then Radient, if only 'D's then Dire
+        # goes in order of sequence, so first senator can ban the next non-same party senator
+        # if a senator has been banned, they're no longer considered so remove
+        # after each full round (reach end of string), check if a party has won
+        # somehow separate active vs banned senators or something for each round
+        # so R bans the next first D
+        r_can_ban = d_can_ban = 0
+        r_banned = d_banned = 0
+        final = []
+        while not final or 'R' and 'D' in final:
+            for c in senate:
+                if c == 'R':
+                    # then could be banned, or could ban a future or past D
+                    if not d_can_ban:
+                        r_can_ban += 1
+                        # and if R in final, remove any R? or last R? try last
+                        if 'D' in final:
+                            final.remove('D')
+                        final.append(c)
+                    else:  # means prev D can ban this R
+                        # can be banned so ignore,
+                        d_can_ban -= 1
+                elif c == 'D':
+                    # then could be banned, or could ban a future or past R
+                    if not r_can_ban:
+                        d_can_ban += 1
+                        # and if R in final, remove any R? or last R? try last
+                        if 'R' in final:
+                            final.remove('R')
+                        final.append(c)
+                    else:
+                        # can be banned so ignore,
+                        r_can_ban -= 1
 
+        return final
+
+print(Solution().predictPartyVictory("RRDDD"))  # 1 R 1 D by end of first round, then R bans D, wins
 
 
 
