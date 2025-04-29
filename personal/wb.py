@@ -4,73 +4,134 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 649. Dota2 Senate
+# 2095. Delete the Middle Node of a Linked List
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 class Solution:
-    def predictPartyVictory(self, senate: str) -> str:
-    # # chatgpt code below:
-        radiant = deque()
-        dire = deque()
-        n = len(senate)
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-        # Fill initial queues with indexes
-        for i, s in enumerate(senate):
-            if s == 'R':
-                radiant.append(i)
-            else:
-                dire.append(i)
+        # acct for edge cases
+        # if count is 1, return head
+        if not head.next:
+            return None
+        elif not head.next.next:
+            head.next = None
+            return head
+        # measure length of linked list first, // 2 to get node index to remove
+        # traverse the list, keep a total count of nodes to later divide by // 2
+        curr = head
+        count = 0
+        while curr:
+            curr = curr.next
+            count += 1
+        # store the middle index node in var to access later to remove from list
+        middle = count // 2
 
-        while radiant and dire:
-            r = radiant.popleft()
-            d = dire.popleft()
-            if r < d:
-                # Radiant senator acts first, bans Dire senator
-                radiant.append(r + n)
-            else:
-                # Dire senator acts first, bans Radiant senator
-                dire.append(d + n)
+        # traverse list again to remove the middle node, connect prev to next
+        curr = head
+        count = 0
+        # use prev node to middle (ie 4 vs 5) to get prev node
+        while curr:
+            # if node is mid node - 1, then remove it
+            if middle - 1 == count:  # count lags curr, is prev
+                # acct for edge cases where just 1 or 2 nodes in list
+                # if curr has next, then that next is middle
+                # if curr.next:
+                #     if curr.next.next:
+                        # then unlink the middle node, connect prev to middle's next
+                next = curr.next.next
+                curr.next.next = None
+                curr.next = next
+                return head
+                    # else:
+                    #     # means only 2 nodes, remove last node (curr.next)
+                    #     curr.next = None
+                    #     return curr
+                # # if curr has no next, return curr since len(list) is 1
+                # else:
+                #     curr = None
+                #     return head
+            curr = curr.next
+            count += 1
 
-        return "Radiant" if radiant else "Dire"
+n1 = ListNode(1)
+n2 = ListNode(2)
+n3 = ListNode(3)
+n1.next = n2
+n2.next = n3
+print(Solution().deleteMiddle(n1))
 
-        # for the end string/list, check if only 'R's then Radient, if only 'D's then Dire
-        # goes in order of sequence, so first senator can ban the next non-same party senator
-        # if a senator has been banned, they're no longer considered so remove
-        # after each full round (reach end of string), check if a party has won
-        # somehow separate active vs banned senators or something for each round
-        # so R bans the next first D
-        # final = []
-        # senate = list(senate)
-        # while 'R' in senate and 'D' in senate:
-        #     r_can_ban = d_can_ban = 0
-        #     for c in senate:  # this should be final not senate except at start
-        #         if c == 'R':
-        #             # then could be banned, or could ban a future or past D
-        #             if not d_can_ban:
-        #                 r_can_ban += 1
-        #                 # and if R in final, remove any R? or last R? try last
-        #                 if 'D' in senate:
-        #                     senate.remove('D')
-        #                 # senate.append(c)
-        #             else:  # means prev D can ban this R
-        #                 # can be banned so ignore,
-        #                 senate.remove('R')
-        #                 d_can_ban -= 1
-        #         elif c == 'D':
-        #             # then could be banned, or could ban a future or past R
-        #             if not r_can_ban:
-        #                 d_can_ban += 1
-        #                 # and if R in final, remove any R? or last R? try last
-        #                 if 'R' in senate:
-        #                     senate.remove('R')
-        #                 # senate.append(c)
-        #             else:
-        #                 # can be banned so ignore,
-        #                 senate.remove('D')
-        #                 r_can_ban -= 1
-        #         # print(senate)
 
-        # return 'Radiant' if 'R' in senate else 'Dire'
+# # 649. Dota2 Senate
+# class Solution:
+#     def predictPartyVictory(self, senate: str) -> str:
+#     # # chatgpt code below:
+#         radiant = deque()
+#         dire = deque()
+#         n = len(senate)
 
-print(Solution().predictPartyVictory("RDD"))  # 1 R 1 D by end of first round, then R bans D, wins
+#         # Fill initial queues with indexes
+#         for i, s in enumerate(senate):
+#             if s == 'R':
+#                 radiant.append(i)
+#             else:
+#                 dire.append(i)
+
+#         while radiant and dire:
+#             r = radiant.popleft()
+#             d = dire.popleft()
+#             if r < d:
+#                 # Radiant senator acts first, bans Dire senator
+#                 radiant.append(r + n)
+#             else:
+#                 # Dire senator acts first, bans Radiant senator
+#                 dire.append(d + n)
+
+#         return "Radiant" if radiant else "Dire"
+
+#         # for the end string/list, check if only 'R's then Radient, if only 'D's then Dire
+#         # goes in order of sequence, so first senator can ban the next non-same party senator
+#         # if a senator has been banned, they're no longer considered so remove
+#         # after each full round (reach end of string), check if a party has won
+#         # somehow separate active vs banned senators or something for each round
+#         # so R bans the next first D
+#         # final = []
+#         # senate = list(senate)
+#         # while 'R' in senate and 'D' in senate:
+#         #     r_can_ban = d_can_ban = 0
+#         #     for c in senate:  # this should be final not senate except at start
+#         #         if c == 'R':
+#         #             # then could be banned, or could ban a future or past D
+#         #             if not d_can_ban:
+#         #                 r_can_ban += 1
+#         #                 # and if R in final, remove any R? or last R? try last
+#         #                 if 'D' in senate:
+#         #                     senate.remove('D')
+#         #                 # senate.append(c)
+#         #             else:  # means prev D can ban this R
+#         #                 # can be banned so ignore,
+#         #                 senate.remove('R')
+#         #                 d_can_ban -= 1
+#         #         elif c == 'D':
+#         #             # then could be banned, or could ban a future or past R
+#         #             if not r_can_ban:
+#         #                 d_can_ban += 1
+#         #                 # and if R in final, remove any R? or last R? try last
+#         #                 if 'R' in senate:
+#         #                     senate.remove('R')
+#         #                 # senate.append(c)
+#         #             else:
+#         #                 # can be banned so ignore,
+#         #                 senate.remove('D')
+#         #                 r_can_ban -= 1
+#         #         # print(senate)
+
+#         # return 'Radiant' if 'R' in senate else 'Dire'
+
+# print(Solution().predictPartyVictory("RDD"))  # 1 R 1 D by end of first round, then R bans D, wins
 
 
 
