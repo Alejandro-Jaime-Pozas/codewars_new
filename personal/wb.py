@@ -4,65 +4,69 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 2095. Delete the Middle Node of a Linked List
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-class Solution:
-    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
 
-        # acct for edge cases
-        # if count is 1, return head
-        if not head.next:
-            return None
-        elif not head.next.next:
-            head.next = None
-            return head
-        # measure length of linked list first, // 2 to get node index to remove
-        # traverse the list, keep a total count of nodes to later divide by // 2
-        curr = head
-        count = 0
-        while curr:
-            curr = curr.next
-            count += 1
-        # store the middle index node in var to access later to remove from list
-        middle = count // 2
 
-        # traverse list again to remove the middle node, connect prev to next
-        curr = head
-        count = 0
-        # use prev node to middle (ie 4 vs 5) to get prev node
-        while curr:
-            # if node is mid node - 1, then remove it
-            if middle - 1 == count:  # count lags curr, is prev
-                # acct for edge cases where just 1 or 2 nodes in list
-                # if curr has next, then that next is middle
-                # if curr.next:
-                #     if curr.next.next:
-                        # then unlink the middle node, connect prev to middle's next
-                next = curr.next.next
-                curr.next.next = None
-                curr.next = next
-                return head
-                    # else:
-                    #     # means only 2 nodes, remove last node (curr.next)
-                    #     curr.next = None
-                    #     return curr
-                # # if curr has no next, return curr since len(list) is 1
-                # else:
-                #     curr = None
-                #     return head
-            curr = curr.next
-            count += 1
 
-n1 = ListNode(1)
-n2 = ListNode(2)
-n3 = ListNode(3)
-n1.next = n2
-n2.next = n3
-print(Solution().deleteMiddle(n1))
+
+# # 2095. Delete the Middle Node of a Linked List
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+#         # acct for edge cases
+#         # if count is 1, return head
+#         if not head.next:
+#             return None
+#         elif not head.next.next:
+#             head.next = None
+#             return head
+#         # measure length of linked list first, // 2 to get node index to remove
+#         # traverse the list, keep a total count of nodes to later divide by // 2
+#         curr = head
+#         count = 0
+#         while curr:
+#             curr = curr.next
+#             count += 1
+#         # store the middle index node in var to access later to remove from list
+#         middle = count // 2
+
+#         # traverse list again to remove the middle node, connect prev to next
+#         curr = head
+#         count = 0
+#         # use prev node to middle (ie 4 vs 5) to get prev node
+#         while curr:
+#             # if node is mid node - 1, then remove it
+#             if middle - 1 == count:  # count lags curr, is prev
+#                 # acct for edge cases where just 1 or 2 nodes in list
+#                 # if curr has next, then that next is middle
+#                 # if curr.next:
+#                 #     if curr.next.next:
+#                         # then unlink the middle node, connect prev to middle's next
+#                 next = curr.next.next
+#                 curr.next.next = None
+#                 curr.next = next
+#                 return head
+#                     # else:
+#                     #     # means only 2 nodes, remove last node (curr.next)
+#                     #     curr.next = None
+#                     #     return curr
+#                 # # if curr has no next, return curr since len(list) is 1
+#                 # else:
+#                 #     curr = None
+#                 #     return head
+#             curr = curr.next
+#             count += 1
+
+# n1 = ListNode(1)
+# n2 = ListNode(2)
+# n3 = ListNode(3)
+# n1.next = n2
+# n2.next = n3
+# print(Solution().deleteMiddle(n1))
 
 
 # # 649. Dota2 Senate
