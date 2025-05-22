@@ -15,15 +15,23 @@ class Solution:
         # think logically
         # store the curr node's next node for next iter
         # in next iter, change the next value to prev iter node while again storing the next node
+        # if there's no prev, do nothing, change prev to curr for next iter
+        prev = None # to start the head node has no prev so None
         curr = head
         while curr:
-            temp = curr.next
-            
-        return
+            # if prev, store old curr.next, new curr.next points to prev, next iter is stored old curr.next
+            next_iter = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_iter
+        return prev
 
-
-
-print(Solution().reverseList())
+n1 = ListNode(1)
+n1.next = ListNode(2)
+n1.next.next = ListNode(3)
+n1.next.next.next = ListNode(4)
+n1.next.next.next.next = ListNode(5)
+print(Solution().reverseList(n1))
 
 
 
