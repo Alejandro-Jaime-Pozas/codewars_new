@@ -4,46 +4,85 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 328. Odd Even Linked List
+# 206. Reverse Linked List
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 class Solution:
-    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # need to separate into two lists, node 1 head of first, node 2 head of second
-        odd_curr = head if head else None
-        # insert a mock even_head node, remove at end before reconnecting to odd
-        even_head = ListNode(3000)
-        even_curr = even_head  # use as mock, later remove
-        # while the current node has next (not None), if odd add to odds, if even add to evens, acct for any changes
-        while odd_curr:
-            # if not odd_curr.next then end of list, append evens to odds
-            if not odd_curr.next:
-                odd_curr.next = even_head.next
-                break
-            # if odd_curr, 2nd is disconnected from list, 2nd for odd_curr becomes 2nd's next node, discon 2nd is added to even nodes list
-            # store even node temp, add it to existing even list
-            # maintain curr node values for odd/even tail nodes to be able to add to them
-            even_temp = odd_curr.next
-            even_curr.next = even_temp
-            even_curr = even_curr.next
-            # if odd_curr, even already disconnected, 3rd becomes 2nd
-            odd_temp = odd_curr.next
-            odd_curr.next = odd_curr.next.next
-            odd_temp.next = None
-            odd_curr = odd_curr.next
-        # in the end, join head evens to tail odds
-        # first remove mock even head, then add rest of even to odd list
-        return head
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # think logically
+        # store the curr node's next node for next iter
+        # in next iter, change the next value to prev iter node while again storing the next node
+        curr = head
+        while curr:
+            temp = curr.next
+            
+        return
 
-n1 = ListNode(1)
-n1.next = ListNode(2)
-n1.next.next = ListNode(3)
-n1.next.next.next = ListNode(4)
-n1.next.next.next.next = ListNode(5)
-print(Solution().oddEvenList(n1))
+
+
+print(Solution().reverseList())
+
+
+
+# # 328. Odd Even Linked List
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         if not head or not head.next:
+#             return head
+
+#         odd = head
+#         even = head.next
+#         even_head = even  # save the start of even list
+
+#         while even and even.next:
+#             odd.next = even.next
+#             odd = odd.next
+#             even.next = odd.next
+#             even = even.next
+
+#         odd.next = even_head  # append even list to end of odd list
+#         return head
+
+#         # # need to separate into two lists, node 1 head of first, node 2 head of second
+#         # odd_curr = head if head else None
+#         # # insert a mock even_head node, remove at end before reconnecting to odd
+#         # even_head = ListNode(3000)
+#         # even_curr = even_head  # use as mock, later remove
+#         # # while the current node has next (not None), if odd add to odds, if even add to evens, acct for any changes
+#         # while odd_curr:
+#         #     # if not odd_curr.next then end of list, append evens to odds
+#         #     if not odd_curr.next:
+#         #         odd_curr.next = even_head.next
+#         #         break
+#         #     # if odd_curr, 2nd is disconnected from list, 2nd for odd_curr becomes 2nd's next node, discon 2nd is added to even nodes list
+#         #     # store even node temp, add it to existing even list
+#         #     # maintain curr node values for odd/even tail nodes to be able to add to them
+#         #     even_temp = odd_curr.next
+#         #     even_curr.next = even_temp
+#         #     even_curr = even_curr.next
+#         #     # if odd_curr, even already disconnected, 3rd becomes 2nd
+#         #     odd_temp = odd_curr.next
+#         #     odd_curr.next = odd_curr.next.next
+#         #     odd_temp.next = None
+#         #     odd_curr = odd_curr.next
+#         # # in the end, join head evens to tail odds
+#         # # first remove mock even head, then add rest of even to odd list
+#         # return head
+
+# n1 = ListNode(1)
+# n1.next = ListNode(2)
+# n1.next.next = ListNode(3)
+# n1.next.next.next = ListNode(4)
+# n1.next.next.next.next = ListNode(5)
+# print(Solution().oddEvenList(n1))
 
 
 
