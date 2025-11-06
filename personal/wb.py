@@ -4,34 +4,65 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# 206. Reverse Linked List
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # think logically
-        # store the curr node's next node for next iter
-        # in next iter, change the next value to prev iter node while again storing the next node
-        # if there's no prev, do nothing, change prev to curr for next iter
-        prev = None # to start the head node has no prev so None
-        curr = head
-        while curr:
-            # if prev, store old curr.next, new curr.next points to prev, next iter is stored old curr.next
-            next_iter = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next_iter
-        return prev
+# Take a Ten Minutes Walk
+def is_valid_walk(walk: list[str]) -> bool:
+    # each letter represents 1 block and 1 min
+    # can go n, s, w, or e
+    # must return to the same starting point exactly
+    # can track n/s and w/e since they must be balanced to return to start point
+    if len(walk) != 10: return False
 
-n1 = ListNode(1)
-n1.next = ListNode(2)
-n1.next.next = ListNode(3)
-n1.next.next.next = ListNode(4)
-n1.next.next.next.next = ListNode(5)
-print(Solution().reverseList(n1))
+    return walk.count('n') == walk.count('s') and walk.count('w') == walk.count('e')
+
+    # y = 0
+    # x = 0
+    # for dir in walk:
+    #     if dir == 'n':
+    #         y += 1
+    #     elif dir == 's':
+    #         y -= 1
+    #     elif dir == 'w':
+    #         x += 1
+    #     elif dir == 'e':
+    #         x -= 1
+    #     else:
+    #         return 'direction out of this dimension'
+
+    # return y == 0 and x == 0
+
+print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))
+print(is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']))
+print(is_valid_walk(['n','n','n','s','n','s','n','s','n','s']))
+
+
+# # 206. Reverse Linked List
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         # think logically
+#         # store the curr node's next node for next iter
+#         # in next iter, change the next value to prev iter node while again storing the next node
+#         # if there's no prev, do nothing, change prev to curr for next iter
+#         prev = None # to start the head node has no prev so None
+#         curr = head
+#         while curr:
+#             # if prev, store old curr.next, new curr.next points to prev, next iter is stored old curr.next
+#             next_iter = curr.next
+#             curr.next = prev
+#             prev = curr
+#             curr = next_iter
+#         return prev
+
+# n1 = ListNode(1)
+# n1.next = ListNode(2)
+# n1.next.next = ListNode(3)
+# n1.next.next.next = ListNode(4)
+# n1.next.next.next.next = ListNode(5)
+# print(Solution().reverseList(n1))
 
 
 
@@ -2371,7 +2402,7 @@ class Solution:
 
 #     def play(self):
 #         # will need 1 leap for every connected block of 1's.
-#         # a connected block of 1's consists of all consecutive 1's which are aligned either horizontally or vertically, not diagonally.
+#         # a connected block of 1's consists of all consecutive 1's which are aligned either xly or yly, not diagonally.
 #         leaps = 0
 #         seen = set() # add the i and j as one single value here to check
 #         for i, arr in enumerate(self.board):
