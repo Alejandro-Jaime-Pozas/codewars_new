@@ -1,38 +1,67 @@
 # INCLUDE THIS ALWAYS!!!
-from typing import Optional, List
+from subprocess import list2cmdline
+from typing import Any, Optional, List
 from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# Take a Ten Minutes Walk
-def is_valid_walk(walk: list[str]) -> bool:
-    # each letter represents 1 block and 1 min
-    # can go n, s, w, or e
-    # must return to the same starting point exactly
-    # can track n/s and w/e since they must be balanced to return to start point
-    if len(walk) != 10: return False
+# persistent bugger
+def persistence(n: int) -> int:
+    # convert num to string, check its length
+    multiplicative_persistence = 0
+    n = str(n)
 
-    return walk.count('n') == walk.count('s') and walk.count('w') == walk.count('e')
+    while len(n) > 1:
+        # split the str n into each char
+        d_list = list(n)
+        # multiply the int of all split char nums
+        n = product(d_list)
+        # use the result to overwrite value of n
+        multiplicative_persistence += 1
 
-    # y = 0
-    # x = 0
-    # for dir in walk:
-    #     if dir == 'n':
-    #         y += 1
-    #     elif dir == 's':
-    #         y -= 1
-    #     elif dir == 'w':
-    #         x += 1
-    #     elif dir == 'e':
-    #         x -= 1
-    #     else:
-    #         return 'direction out of this dimension'
+    return multiplicative_persistence
 
-    # return y == 0 and x == 0
+def product(lst: list) -> str:
+    mult = 1
+    for n in lst:
+        mult *= int(n)
+    return str(mult)
 
-print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))
-print(is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']))
-print(is_valid_walk(['n','n','n','s','n','s','n','s','n','s']))
+print(persistence(39))
+print(persistence(999))
+print(persistence(4))
+
+
+
+# # Take a Ten Minutes Walk
+# def is_valid_walk(walk: list[str]) -> bool:
+#     # each letter represents 1 block and 1 min
+#     # can go n, s, w, or e
+#     # must return to the same starting point exactly
+#     # can track n/s and w/e since they must be balanced to return to start point
+#     if len(walk) != 10: return False
+
+#     return walk.count('n') == walk.count('s') and walk.count('w') == walk.count('e')
+
+#     # y = 0
+#     # x = 0
+#     # for dir in walk:
+#     #     if dir == 'n':
+#     #         y += 1
+#     #     elif dir == 's':
+#     #         y -= 1
+#     #     elif dir == 'w':
+#     #         x += 1
+#     #     elif dir == 'e':
+#     #         x -= 1
+#     #     else:
+#     #         return 'direction out of this dimension'
+
+#     # return y == 0 and x == 0
+
+# print(is_valid_walk(['n','s','n','s','n','s','n','s','n','s']))
+# print(is_valid_walk(['w','e','w','e','w','e','w','e','w','e','w','e']))
+# print(is_valid_walk(['n','n','n','s','n','s','n','s','n','s']))
 
 
 # # 206. Reverse Linked List
