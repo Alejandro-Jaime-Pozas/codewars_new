@@ -5,31 +5,50 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# persistent bugger
-def persistence(n: int) -> int:
-    # convert num to string, check its length
-    multiplicative_persistence = 0
-    n = str(n)
+# # array combinations
+# def solve(arr):
+#     # solve for how many possible combinations bw array of arrays
+#     # only count unique values in each subarray
+#     # really don't even need the numbers, just how many unique elements in each, multiply by each other
 
-    while len(n) > 1:
-        # split the str n into each char
-        d_list = list(n)
-        # multiply the int of all split char nums
-        n = product(d_list)
-        # use the result to overwrite value of n
-        multiplicative_persistence += 1
+#     const = 1
+#     for sub in arr:
+#         # make values unique, multiply by const
+#         const *= len(set(sub))
 
-    return multiplicative_persistence
+#     return const
 
-def product(lst: list) -> str:
-    mult = 1
-    for n in lst:
-        mult *= int(n)
-    return str(mult)
 
-print(persistence(39))
-print(persistence(999))
-print(persistence(4))
+# print(solve([[1,2],[4],[5,6]]))
+# print(solve([[1,2],[4,4],[5,6,6]]))
+
+
+
+# # persistent bugger
+# def persistence(n: int) -> int:
+#     # convert num to string, check its length
+#     multiplicative_persistence = 0
+#     n = str(n)
+
+#     while len(n) > 1:
+#         # split the str n into each char
+#         d_list = list(n)
+#         # multiply the int of all split char nums
+#         n = product(d_list)
+#         # use the result to overwrite value of n
+#         multiplicative_persistence += 1
+
+#     return multiplicative_persistence
+
+# def product(lst: list) -> str:
+#     mult = 1
+#     for n in lst:
+#         mult *= int(n)
+#     return str(mult)
+
+# print(persistence(39))
+# print(persistence(999))
+# print(persistence(4))
 
 
 
