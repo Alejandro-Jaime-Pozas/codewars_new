@@ -1,8 +1,316 @@
 # INCLUDE THIS ALWAYS!!!
-from subprocess import list2cmdline
 from typing import Any, Optional, List
 from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
+
+
+
+# def unique_in_order(sequence):
+#     # create same-ordered list, but without repeat consecutive elements..
+#     # set doesn't work for this
+#     # need to iterate and just add...
+#     if len(sequence) < 2: return [] if not sequence else [sequence[0]]
+#     uio = [sequence[0]]
+
+#     for i in range(1, len(sequence)):
+#         if sequence[i] == sequence[i-1]:
+#             continue
+#         else:
+#             uio.append(sequence[i])
+
+#     return uio
+
+
+# print(unique_in_order('AAAABBBCCDAABBB'))
+# print(unique_in_order('ABBCcAD'))
+# print(unique_in_order([1, 2, 2, 3, 3]))
+
+
+
+# access_code = '12212'
+# patterns = ['12', '12', '2', '1', '122', '21']
+
+# h = {}
+
+# for n in patterns:
+#     h[n] = h.get(n, 1) + 1
+
+# possible = set(patterns)
+
+
+
+
+
+# valid = '14'
+# nums = '12341234'
+
+# print([int(c) for c in nums if c in valid])
+
+# class Solution:
+#     def maxVowels(self, s: str, k: int) -> int:
+#         # must be continuous
+#         # substring must be == k
+#         # substring may have all vowels, no vowels
+#         # need to check each new char if vowel, remove previous
+#         # increase count if vowel, decrease if vowel goes out
+#         vowels = 'aeiou'
+#         i = 0
+#         cur_vowels = 0  # base case
+#         max_vowels = 0
+
+#         while i < len(s):
+#             # print('at letter:', s[i])
+#             # need to first reach k..count before k
+#             while i < k:
+#                 # just add, don't subtract since building first ver
+#                 if s[i] in vowels:
+#                     cur_vowels += 1
+#                 i += 1
+#                 max_vowels = cur_vowels
+#                 if i >= len(s): return max_vowels
+
+#             # when done with initial ver, now increase count if incoming is vowel and/or outgoing is vowel
+#             # print('max:', max_vowels, '- cur:', cur_vowels, 'i:', i, '- k:', s[i-k:i])
+
+#             if s[i] in vowels:
+#                 cur_vowels += 1
+#             if s[i-k] in vowels:
+#                 cur_vowels -= 1
+#             if cur_vowels > max_vowels:
+#                 max_vowels = cur_vowels
+#             i += 1
+#         return max_vowels
+
+# print(Solution().maxVowels('ibpbhixfiouhdljnjfflpapptrxgcomvnb', 33))
+# print((len('ibpbhixfiouhdljnjfflpapptrxgcomvnb')))
+
+
+# class Cube3D:
+#     def __init__(self, size: int = 3):
+#         self.size = size
+#         self.grid = [[[False] * size for _ in range(size)] for _ in range(size)]
+
+#     def _find_lowest_z(self, x: int, y: int) -> int | None:
+#         """Return the lowest empty z at (x, y), or None if column is full."""
+#         print('finding lowest available z for:', x, y)
+#         for z in range(self.size):
+#             # print(f'self.grid:', x, y, z)
+#             if not self.grid[x][y][z]:
+#                 return z
+#         return None  # col is full
+
+#     def place(self, x: int, y: int) -> dict:
+#         """
+#         Attempt to place a piece at (x, y).
+#         Returns a result dict with placement info.
+#         """
+#         z = self._find_lowest_z(x, y)
+#         # if not z means col full, don't place just skip
+#         if z is None:
+#             print('\tskipping...')
+#             return None
+#         self.grid[x][y][z] = True
+#         print('\tplacing...')
+#         return {'position_placed': (x, y, z), }
+
+#     def process(self, pieces: list[tuple[int, int]]) -> list[dict]:
+#         """Process a list of (x, y) pieces and return placement log."""
+#         for item in pieces:
+#             placed = self.place(item[0], item[1])
+#             print(f'{item[0], item[1]} placed' if placed else f'{item[0], item[1]} skipped')
+
+
+# incoming_pieces = [
+#     (0, 0), (0, 0), (0, 0),  # fills column (0,0) completely
+#     (0, 0),                   # skipped — column full
+#     (1, 1), (2, 2), (1, 1),
+#     (0, 1), (2, 0), (2, 0),
+#     (1, 2), (0, 2), (2, 1),
+#     (1, 0), (1, 2), (2, 1),
+# ]
+
+# cube = Cube3D(size=3)
+# print('GRID:', cube.grid)
+# cube.process(incoming_pieces)
+
+
+# def max_sum_k(nums, k):
+
+#     # start with default max for first k consecutive nums
+#     cur = sum(nums[:k])
+#     top = cur
+
+#     # iter through remaining nums by adding the right num, removing the left num, checking if sum > max
+#     for i in range(k, len(nums)):
+#         cur += nums[i]
+#         cur -= nums[i-k]
+#         if cur > top:
+#             top = cur
+#     return top
+
+# print(max_sum_k([2, 1, 5, 1, 3, 2], 3))  # 9 (5+1+3)
+
+
+
+# def binary_search(nums, target):
+#     left, right = 0, len(nums) - 1
+
+#     while left <= right:
+#         mid = (left + right) // 2
+#         if nums[mid] == target:
+#             return mid
+#         if nums[mid] < target:
+#             left = mid + 1
+#         else:
+#             right = mid - 1
+
+#     return -1
+
+# print(binary_search([1, 3, 4, 6, 8, 10], 10))  # 3
+
+
+
+# def two_sum_sorted(nums, target):
+#     left, right = 0, len(nums) - 1
+
+#     while left < right:
+#         s = nums[left] + nums[right]
+#         if s == target:
+#             return left, right
+#         if s < target:
+#             left += 1
+#         else:
+#             right -= 1
+
+#     return None
+
+# print(two_sum_sorted([1, 2, 4, 7, 11, 15], 15))  # (2, 4) -> 4 + 11
+
+
+
+# def merge_sort(nums):
+#     if len(nums) <= 1:
+#         return nums
+
+#     mid = len(nums) // 2
+#     left = merge_sort(nums[:mid])
+#     right = merge_sort(nums[mid:])
+
+#     return merge(left, right)
+
+# def merge(a, b):
+#     i = j = 0
+#     out = []
+#     while i < len(a) and j < len(b):
+#         if a[i] <= b[j]:
+#             out.append(a[i])
+#             i += 1
+#         else:
+#             out.append(b[j])
+#             j += 1
+#     out.extend(a[i:])
+#     out.extend(b[j:])
+#     return out
+
+# print(merge_sort([5, 2, 9, 1, 5, 6, -10, 100, 54]))  # [1, 2, 5, 5, 6, 9]
+
+
+
+# def greedy_change(amount, coins=(25, 10, 5, 1)):
+#     result = []
+#     for coin in coins:
+#         while amount >= coin:
+#             result.append(coin)
+#             amount -= coin
+#     return result
+
+# print(greedy_change(63))  # [25, 25, 10, 1, 1, 1]
+
+
+# # 700
+# # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# class Solution:
+#     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+
+#         if not root: return None
+#         if root.val == val:
+#             return root
+#         if val < root.val:
+#             left = self.searchBST(root.left, val)
+#             return left
+#         if val > root.val:
+#             right = self.searchBST(root.right, val)
+#             return right
+
+
+
+# root = TreeNode(4)
+# root.left = TreeNode(2)
+# root.right = TreeNode(7)
+# root.left.left = TreeNode(1)
+# root.left.right = TreeNode(3)
+
+# print(Solution().searchBST(root, 2))
+
+
+
+# # 104
+# # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# class Solution:
+#     def maxDepth(self, root: Optional[TreeNode]) -> int:
+
+#         # need to recursively traverse both left and right until no more nodes
+#         # base case for when cur is null
+#         if not root: return 0
+#         left = self.maxDepth(root.left) + 1
+#         right = self.maxDepth(root.right) + 1
+#         return max(left, right)
+
+
+
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         ...
+#         # we have a cur node, or head
+#         # its n.next is the next node
+#         # the n.next should now point to n
+#         cur = head #1
+
+#         while cur.next: #2
+#             temp = cur.next.next #3
+#             cur.next.next = cur #1
+#             cur = temp #3
+
+#         return head
+
+
+# n1 = ListNode(1)
+# n2 = ListNode(2)
+# n3 = ListNode(3)
+# n4 = ListNode(4)
+# n5 = ListNode(5)
+
+# n1.next = n2
+# n2.next = n3
+# n3.next = n4
+# n4.next = n5
+
+# print(Solution().reverseList(n1))
 
 
 # # array combinations
