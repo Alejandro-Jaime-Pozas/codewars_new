@@ -5,6 +5,36 @@ from collections import Counter, deque
 
 
 
+
+
+
+# def order(sentence):
+# # can only be from 1 to 9
+# # perhaps split the string for whitespaces?
+# # then for each item there, create dict with num as key, word as value
+# # then return ordered version
+
+#     if not sentence: return ''
+
+#     words = sentence.split(' ')
+#     nums = '123456789'
+
+#     map = {}
+
+#     for w in words:
+#         for c in w:
+#             if c in nums:
+#                 map[c] = w
+
+#     ordered = dict(sorted(map.items(), key=lambda x: x[0]))
+
+#     return ' '.join(word for word in ordered.values())
+
+
+# print(order("4of Fo1r pe6ople g3ood th5e the2"))
+
+
+
 # def unique_in_order(sequence):
 #     # create same-ordered list, but without repeat consecutive elements..
 #     # set doesn't work for this
