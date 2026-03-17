@@ -3,3 +3,5 @@
 
 # exclude from gitignore the main dir
 !personal
+
+.vscode/
