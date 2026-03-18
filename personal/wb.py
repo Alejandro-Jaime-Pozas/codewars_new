@@ -8,6 +8,64 @@ from collections import Counter, deque
 
 
 
+# class Solution:
+#     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
+#         # must be 0 between the 1s
+#         # flowerbed may or may not already have flowers, but never adjacent ones
+#         # for a given i, need to check if flower in i, i-1, i+1, if none, can plant flower there
+#         ...
+#         # if n == 0: return True
+
+#         # f_len = len(flowerbed)
+
+#         # if f_len < 3:
+#         #     return sum(flowerbed) + n <= 1
+
+#         # remaining = n
+
+#         # lagging = []
+#         # if flowerbed[0] == flowerbed[1] == 0:
+#         #     lagging.append(1)
+#         #     remaining -= 1
+#         # else:
+#         #     lagging.append(flowerbed[0])
+
+#         # # now min len is 3, start at 1, compare i-1, i+1. if all are 0, can place plant there
+#         # for i in range(1, f_len):
+#         #     # if no more remaining, success return true
+#         #     if remaining == 0:
+#         #         return True
+#         #     # if last iter, and no num before, can place flower
+#         #     if i == f_len - 1:  # last iter
+#         #         if lagging[i-1] == flowerbed[i] == 0:
+#         #             lagging.append(1)
+#         #             remaining -= 1
+#         #     # compare i-1, i, i+1. if all are 0, can place plant there, else continue
+#         #     elif lagging[i-1] == flowerbed[i] == flowerbed[i+1] == 0:
+#         #         lagging.append(1)
+#         #         remaining -= 1
+#         #     # if not possible to plot, append i to lagging
+#         #     else:
+#         #         lagging.append(flowerbed[i])
+
+#         #     print(lagging)
+
+#         # return remaining == 0
+
+#         # for i in range(1, len(flowerbed)):
+#         #     if flowerbed[i] == 0:
+#         #         flowerbed[i] = 3423490
+#         #         print(flowerbed)
+#         #     elif flowerbed[i-1] == 3423490:
+#         #         flowerbed[i] = 30
+#         #         print(flowerbed)
+
+
+# print(Solution().canPlaceFlowers([0,0,0,0,0,1,0,0], 0))
+
+
+
+
 # def order(sentence):
 # # can only be from 1 to 9
 # # perhaps split the string for whitespaces?
