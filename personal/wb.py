@@ -9,6 +9,46 @@ from collections import Counter, deque
 
 
 # class Solution:
+#     def moveZeroes(self, nums: List[int]) -> None:
+#         """
+#         Do not return anything, modify nums in-place instead.
+#         """
+
+#         # check num if zero, if so, move to end, continue checking rest of nums for zeroes
+#         # need left pointer..and next pointer..need two pointers, check if left zero, then switch with right if so, if not, move pointers
+#         count = 0
+#         i = 0
+#         while count < len(nums):
+#             ...
+#             if nums[i] == 0:
+#                 # pop the value, append to end, but now list has moved, keep i at same position
+#                 temp = nums.pop(i)
+#                 nums.append(temp)
+#             else:
+#                 i += 1
+
+#             count += 1
+
+#         return nums
+
+
+# print(Solution().moveZeroes([0,1,0,3,12]))
+# print(Solution().moveZeroes([0]))
+
+
+
+# def queue_time(customers, n):
+#     ...
+#     # tills should all be occupied asap
+#     # all n tills should be occupied by all customers[0:n] at first
+#     #   you must exhaust all customers
+#     #
+
+# print(queue_time([5,3,4,10,1,1,2], 3))  # 13
+
+
+
+# class Solution:
 #     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
 #         # must be 0 between the 1s
 #         # flowerbed may or may not already have flowers, but never adjacent ones
