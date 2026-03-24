@@ -5,6 +5,120 @@ from collections import Counter, deque
 
 
 
+# 2095. Delete the Middle Node of a Linked List
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        ...
+        # for even lengths, middle is upper bound ie. len = 4, middle is node 3 not 2
+        # CONSTRAINTS
+            # you cannot know the middle node before traversing the entire linked list
+
+        length = 0
+        cur = head
+
+        # could traverse entire list, figure out its length...
+        while cur:
+            length += 1
+            cur = cur.next
+
+        # if just one node, return None
+        if length < 1:
+            return None
+
+        # once we have the length, can figure out which node is the middle required to extract
+        middle = length // 2 + 1
+
+        # once we have middle node, can find it and have its prev point to its next
+        count = 1
+        cur = head
+
+        while cur:
+            # if next node is middle
+            if count == middle - 1:
+                # if next node has a next, point cur to that
+                if cur.next.next:
+                    cur.next = cur.next.next
+                # else point cur to None
+                else:
+                    cur.next = None
+                break
+
+            count += 1
+            cur = cur.next
+
+        return head
+
+
+
+
+n1 = ListNode(1)
+n2 = n1.next = ListNode(3)
+n3 = n2.next = ListNode(4)
+n4 = n3.next = ListNode(7)
+n5 = n4.next = ListNode(1)
+n6 = n5.next = ListNode(2)
+n7 = n6.next = ListNode(6)
+
+print(Solution().deleteMiddle(n1))
+
+
+
+
+# # 2215. Find the Difference of Two Arrays
+# class Solution:
+#     def findDifference(self, nums1: List[int], nums2: List[int]) -> List[List[int]]:
+#         ...
+#         #
+
+#         answer = []
+
+#         set1 = set(nums1)
+#         set2 = set(nums2)
+
+#         answer.append(list(set1.difference(set2)))
+#         answer.append(list(set2.difference(set1)))
+
+#         return answer
+
+
+# print(Solution().findDifference([1,2,3], [2,5,6]))
+
+
+
+
+# class Solution:
+#     def findMaxAverage(self, nums: List[int], k: int) -> float:
+#         ...
+#         # k cannot be greater than nums length
+#         # start at zero, look for next k nums
+#         # ignore denominator, max value is final, only divide at the very end once max value found
+#         #
+
+#         max_value = cur_value = sum(nums[:k])
+
+#         # if k == nums length, return that max avg, else length nums > k so loop through
+#         if k == len(nums):
+#             return max_value / k
+
+#         for i in range(1, len(nums) - k + 1):
+#             ...
+#             # subtract prev, add next
+#             cur_value -= nums[i-1]
+#             cur_value += nums[i+k-1]
+
+#             # if cur_value > max_value, set new max_value to cur_value, else continue
+#             if cur_value > max_value:
+#                 max_value = cur_value
+
+#         return max_value / k
+
+
+# print(Solution().findMaxAverage([1,12,-5,-6,50,3], 4))
 
 
 
