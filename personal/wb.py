@@ -4,57 +4,14 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-
-# 2095. Delete the Middle Node of a Linked List
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 class Solution:
-    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def pairSum(self, head: Optional[ListNode]) -> int:
         ...
-        # for even lengths, middle is upper bound ie. len = 4, middle is node 3 not 2
-        # CONSTRAINTS
-            # you cannot know the middle node before traversing the entire linked list
-
-        length = 0
-        cur = head
-
-        # could traverse entire list, figure out its length...
-        while cur:
-            length += 1
-            cur = cur.next
-
-        # if just one node, return None
-        if length < 1:
-            return None
-
-        # once we have the length, can figure out which node is the middle required to extract
-        middle = length // 2 + 1
-
-        # once we have middle node, can find it and have its prev point to its next
-        count = 1
-        cur = head
-
-        while cur:
-            # if next node is middle
-            if count == middle - 1:
-                # if next node has a next, point cur to that
-                if cur.next.next:
-                    cur.next = cur.next.next
-                # else point cur to None
-                else:
-                    cur.next = None
-                break
-
-            count += 1
-            cur = cur.next
-
-        return head
-
-
-
 
 n1 = ListNode(1)
 n2 = n1.next = ListNode(3)
@@ -64,7 +21,164 @@ n5 = n4.next = ListNode(1)
 n6 = n5.next = ListNode(2)
 n7 = n6.next = ListNode(6)
 
-print(Solution().deleteMiddle(n1))
+print(Solution().oddEvenList(n1))
+
+
+
+
+# # 328. Odd Even Linked List
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         ...
+#         # need two separate linked lists total, then at end join them
+#         # could maintain a count, if count odd, then add to odd, if even, then add to even?
+#         # Ex 2: 2's next must be 3. 1's next must be 5. next iter should always be cur.next before any changes are made, to iter through all nodes
+#         # for cur node
+#             # store cur.next as next_iter
+#             # if count is odd
+#                 # point odd.next to cur.next.next (if it exists..)
+#             # elif count is even
+#                 # point even.next to cur.next.next (if exists..)
+#             # set cur.next to next_iter,
+#             # increase count by 1
+
+#         count = 1
+#         cur = head
+#         odd = cur
+#         even = cur.next if cur else None
+#         even_head = even
+
+#         while cur and cur.next:
+#             next_iter = cur.next
+#             if count % 2 != 0:
+#                 odd.next = cur.next.next
+#                 odd = odd.next if odd.next else odd  # keep same prev value if next odd val is None
+#             elif count % 2 == 0:
+#                 even.next = cur.next.next
+#                 even = even.next
+#             cur = next_iter
+#             count += 1
+
+#         # merge last odd node's next to even list head
+#         if odd:
+#             odd.next = even_head
+
+#         return head
+
+
+# n1 = ListNode(1)
+# n2 = n1.next = ListNode(3)
+# n3 = n2.next = ListNode(4)
+# n4 = n3.next = ListNode(7)
+# n5 = n4.next = ListNode(1)
+# n6 = n5.next = ListNode(2)
+# n7 = n6.next = ListNode(6)
+
+# print(Solution().oddEvenList(n1))
+
+
+
+
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         ...
+#         # start with None node first, will point head to that
+#         # need to iterate through all nodes in list
+#         # for a given node, you have 3 references. cur, prev, next...
+#         # for cur node, switch prev and next
+#         # for a given node, we're switching its next pointer..so need to before switching, to store its next pointer, then make switch, pass the prev next pointer as the next iter
+
+#         prev = None
+#         cur = head
+
+#         while cur:
+#             next_iter = cur.next  # 2
+#             cur.next = prev  # None
+#             prev = cur  # 1
+#             cur = next_iter  # 2
+
+#         return prev
+
+
+# n1 = ListNode(1)
+# n2 = n1.next = ListNode(3)
+# n3 = n2.next = ListNode(4)
+# n4 = n3.next = ListNode(7)
+# n5 = n4.next = ListNode(1)
+# n6 = n5.next = ListNode(2)
+# n7 = n6.next = ListNode(6)
+
+# print(Solution().reverseList(n1))
+
+
+# # 2095. Delete the Middle Node of a Linked List
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         ...
+#         # for even lengths, middle is upper bound ie. len = 4, middle is node 3 not 2
+#         # CONSTRAINTS
+#             # you cannot know the middle node before traversing the entire linked list
+
+#         length = 0
+#         cur = head
+
+#         # could traverse entire list, figure out its length...
+#         while cur:
+#             length += 1
+#             cur = cur.next
+
+#         # if just one node, return None
+#         if length < 1:
+#             return None
+
+#         # once we have the length, can figure out which node is the middle required to extract
+#         middle = length // 2 + 1
+
+#         # once we have middle node, can find it and have its prev point to its next
+#         count = 1
+#         cur = head
+
+#         while cur:
+#             # if next node is middle
+#             if count == middle - 1:
+#                 # if next node has a next, point cur to that
+#                 if cur.next.next:
+#                     cur.next = cur.next.next
+#                 # else point cur to None
+#                 else:
+#                     cur.next = None
+#                 break
+
+#             count += 1
+#             cur = cur.next
+
+#         return head
+
+
+# n1 = ListNode(1)
+# n2 = n1.next = ListNode(3)
+# n3 = n2.next = ListNode(4)
+# n4 = n3.next = ListNode(7)
+# n5 = n4.next = ListNode(1)
+# n6 = n5.next = ListNode(2)
+# n7 = n6.next = ListNode(6)
+
+# print(Solution().deleteMiddle(n1))
 
 
 
