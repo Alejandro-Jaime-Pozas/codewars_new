@@ -4,24 +4,101 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
-# Definition for singly-linked list.
-class ListNode:
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-class Solution:
-    def pairSum(self, head: Optional[ListNode]) -> int:
-        ...
 
-n1 = ListNode(1)
-n2 = n1.next = ListNode(3)
-n3 = n2.next = ListNode(4)
-n4 = n3.next = ListNode(7)
-n5 = n4.next = ListNode(1)
-n6 = n5.next = ListNode(2)
-n7 = n6.next = ListNode(6)
 
-print(Solution().oddEvenList(n1))
+
+
+# # Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+# class Solution:
+#     def pairSum(self, head: Optional[ListNode]) -> int:
+
+#         # NEED O(1) space...
+#         # first iter only store the length
+#         # 2nd iter prob something like reverse list?
+#         # find middle, reverse the second part
+
+#         cur = head
+#         length = 0
+#         while cur:
+#             length += 1
+#             cur = cur.next
+
+#         # 2nd iter split at middle
+#         mid = length // 2
+#         cur = head
+#         count = 0
+#         while cur:
+#             count += 1
+#             if count == mid:
+#                 # store the temp next node which is start of second half
+#                 split_node = cur.next
+#                 cur.next = None
+#                 break
+#             cur = cur.next
+
+#         # reverse the second list
+#         cur = split_node
+#         prev = None
+#         while cur:
+#             next = cur.next
+#             cur.next = prev
+#             prev = cur
+#             cur = next
+
+#         # iter through both lists, set highest sum to twin sum if > highest sum, else continue
+#         highest_sum = float('-inf')
+
+#         first = head
+#         second = prev
+
+#         while first and second:
+#             twin_sum = first.val + second.val
+#             if twin_sum > highest_sum:
+#                 highest_sum = twin_sum
+#             first = first.next
+#             second = second.next
+
+#         return highest_sum
+
+
+#         # cur = head
+
+#         # values = dict()
+#         # count = 0
+
+#         # while cur:
+#         #     values[count] = cur.val
+#         #     count += 1
+#         #     cur = cur.next
+
+#         # # done iterating, have a dict with index keys and value values
+#         # # set left and right pointers
+#         # l, r = 0, count - 1
+
+#         # highest_sum = float('-inf')
+
+#         # while l < r:
+#         #     twin_sum = values[l] + values[r]
+#         #     if twin_sum > highest_sum:
+#         #         highest_sum = twin_sum
+#         #     l += 1
+#         #     r -= 1
+
+#         # return highest_sum
+
+
+# n1 = ListNode(1)
+# n2 = n1.next = ListNode(3)
+# n3 = n2.next = ListNode(4)
+# n4 = n3.next = ListNode(7)  # 11
+# n5 = n4.next = ListNode(1)  # 4
+# n6 = n5.next = ListNode(2)  # 3
+
+# print(Solution().pairSum(n1))
 
 
 
