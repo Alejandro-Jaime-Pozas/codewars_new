@@ -4,7 +4,65 @@ from collections import Counter, deque
 # INCLUDE THIS ALWAYS!!!
 
 
+# 872. Leaf-Similar Trees
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
+        ...
+        # 
 
+
+n1 = TreeNode(3)
+n2 = TreeNode(9)
+n3 = TreeNode(20)
+n4 = TreeNode(15)
+n5 = TreeNode(7)
+
+n1.left = n2
+n1.right = n3
+n3.left = n4
+n3.right = n5
+
+
+
+
+# # 104. Maximum Depth of Binary Tree
+# # Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# class Solution:
+#     def maxDepth(self, root: Optional[TreeNode]) -> int:
+#         # base case is 1? or 0? 0 since it wouldl be a null node
+#         if not root:
+#             return 0
+
+#         # need to iter through both left and right subtrees, if node present add 1
+#         left = self.maxDepth(root.left)
+#         right = self.maxDepth(root.right)
+#         return max(left, right) + 1
+
+
+# n1 = TreeNode(3)
+# n2 = TreeNode(9)
+# n3 = TreeNode(20)
+# n4 = TreeNode(15)
+# n5 = TreeNode(7)
+
+# n1.left = n2
+# n1.right = n3
+# n3.left = n4
+# n3.right = n5
+
+
+# print(Solution().maxDepth(n1))
 
 
 
