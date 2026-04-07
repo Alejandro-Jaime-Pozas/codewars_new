@@ -14,19 +14,53 @@ class TreeNode:
 class Solution:
     def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
         ...
-        # 
+        # a leaf node HAS NO CHILDREN, that is, has no self.left nor self.right...
+        # two trees/roots
+        # return true only if each value in leaf node sequence from left to right is the same, regardless of upper structure, only leaf node sequence matters
+        # how would you compare the two values?
+        # can i compare the values in o(1) space?
+        # could do a turn-styled while loop, where it checks the first leaf node in root1, pause, check leaf node root2, pause, compare, continue checking other nodes by repeating cycle?
+            # but then how do i iterate back up after reaching leaf node?
+        # base case if leaf node, so if not self.left and not self.right is base case
+
+        # can do lists, so this changes things...
+
+        l1, l2 = [], []
+
+        def recursive(root, ls):
+
+            if not root: return 
+
+            # if leaf node, add its value to its list
+            if not root.right and not root.left:
+                ls.append(root.val)
+                return
+
+            left = recursive(root.left, ls)
+            right = recursive(root.right, ls)
+
+        r1 = recursive(root1, l1)
+        r2 = recursive(root2, l2)
+
+        print(l1, l2)
+
+        return l1 == l2
 
 
-n1 = TreeNode(3)
-n2 = TreeNode(9)
-n3 = TreeNode(20)
-n4 = TreeNode(15)
-n5 = TreeNode(7)
+n1 = TreeNode(1)
+n2 = TreeNode(2)
+n3 = TreeNode(3)
+
+n11 = TreeNode(1)
+n21 = TreeNode(3)
+n31 = TreeNode(2)
 
 n1.left = n2
 n1.right = n3
-n3.left = n4
-n3.right = n5
+n11.left = n21
+n11.right = n31
+
+print(Solution().leafSimilar(n1, n11))
 
 
 

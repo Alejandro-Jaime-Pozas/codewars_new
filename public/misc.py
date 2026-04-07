@@ -1,9 +1,4 @@
-def countup(n):
-    for i in range(n):
-        yield i
+l1 = [1,2,3]
+l2 = [1,3,2]
 
-gen = countup(4)
-print(next(gen))
-print(next(gen))
-print(next(gen))
-print(next(gen))
+print(l1 == l2)
